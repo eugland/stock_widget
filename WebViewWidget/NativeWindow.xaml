@@ -1,0 +1,50 @@
+<!-- WebViewWidget.NativeWindow/MainWindow.xaml -->
+<Window x:Class="WebViewWidget.NativeWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WebViewWidget"
+        Title="Widget"
+        Width="960" Height="560"
+        Background="#121316">
+    <Grid Margin="12">
+        <Border CornerRadius="18" Background="#15171B" Padding="16">
+            <Grid>
+                <Grid Margin="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <StackPanel Orientation="Horizontal" Margin="0,0,12,0">
+                        <TextBlock Text="{Binding Symbol}" FontSize="24" FontWeight="Bold" Foreground="#F5F7FA"/>
+                        <TextBlock Text="{Binding RangeLabel}" Foreground="#A9B1BB" VerticalAlignment="Bottom" Margin="0,0,0,2"/>
+                    </StackPanel>
+
+                    <StackPanel Grid.Column="1" Orientation="Horizontal" VerticalAlignment="Top" Margin="0,0,8,0">
+                        <TextBlock Text="{Binding Price, StringFormat={}{0:F2}}"
+                                   FontSize="26" FontWeight="Black" Foreground="#F5F7FA"/>
+                        <Border Background="#153F2A" CornerRadius="14" Padding="10,4" VerticalAlignment="Center">
+                            <TextBlock Text="{Binding ChangeDisplay}" Foreground="#72D17C" FontWeight="SemiBold"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+
+                <Border Margin="0,48,0,40" CornerRadius="14" Background="#0E0F12">
+                    <local:AreaSparkline Points="{Binding ChartPoints}"
+                                         LineThickness="3"
+                                         LineBrush="#56B6F7">
+                        <local:AreaSparkline.FillBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#80339AD9" Offset="0"/>
+                                <GradientStop Color="#10339AD9" Offset="1"/>
+                            </LinearGradientBrush>
+                        </local:AreaSparkline.FillBrush>
+                    </local:AreaSparkline>
+                </Border>
+
+                <TextBlock Text="{Binding UpdatedDisplay}"
+                           Foreground="#8792A2" FontSize="12" VerticalAlignment="Bottom"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>

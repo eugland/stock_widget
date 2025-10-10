@@ -1,0 +1,18 @@
+<UserControl x:Class="DesktopWidget.StockWidget"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:oxy="http://oxyplot.org/wpf">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="{Binding Title}" Foreground="White" Margin="4,0,4,6"
+                   FontSize="14" FontWeight="SemiBold"/>
+
+        <!-- The chart -->
+        <oxy:PlotView Grid.Row="1" Model="{Binding PlotModel}"
+                      IsMouseWheelEnabled="False" IsManipulationEnabled="False"/>
+    </Grid>
+</UserControl>
