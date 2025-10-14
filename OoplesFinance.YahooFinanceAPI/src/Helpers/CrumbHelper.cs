@@ -74,7 +74,7 @@ internal sealed class CrumbHelper
     private static HttpClientHandler GetClientHandler()
     {
         return YahooClient.IsThrottled
-            ? new DownloadThrottleQueueHandler(40, TimeSpan.FromMinutes(1),4) //40 calls in a minute, no more than 4 simultaneously
+            ? new DownloadThrottleQueueHandler(40, TimeSpan.FromMinutes(1), 4) //40 calls in a minute, no more than 4 simultaneously
             : new HttpClientHandler();
     }
 

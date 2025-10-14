@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Window
+    x:Class="WidgetMain.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:media="using:Microsoft.UI.Xaml.Media"
+    xmlns:pages="using:WidgetMain.Pages"
+    Title="Stock Desktop Widget">
+
+    <!-- Mica background -->
+    <Window.SystemBackdrop>
+        <media:MicaBackdrop />
+    </Window.SystemBackdrop>
+
+    <!-- Root container -->
+    <Grid>
+
+        <!-- Navigation bar -->
+        <NavigationView x:Name="Nav"
+                        PaneDisplayMode="Left"
+                        IsBackButtonVisible="Collapsed"
+                        IsPaneToggleButtonVisible="True"
+                        CompactPaneLength="48"
+                        OpenPaneLength="240"
+                        ExpandedModeThresholdWidth="1000"
+                        CompactModeThresholdWidth="720"
+                        SelectionChanged="Nav_SelectionChanged">
+
+            <!-- Left menu items -->
+            <NavigationView.MenuItems>
+                <NavigationViewItem Icon="Home" Content="Dashboard" Tag="Dashboard"/>
+                <NavigationViewItem Icon="Setting" Content="Settings" Tag="Settings"/>
+            </NavigationView.MenuItems>
+
+            <!-- Main content -->
+            <Frame x:Name="RootFrame"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"/>
+        </NavigationView>
+
+    </Grid>
+</Window>

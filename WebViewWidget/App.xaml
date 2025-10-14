@@ -1,9 +1,12 @@
 ﻿<Application x:Class="WebViewWidget.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:WebViewWidget"
-             StartupUri="MainWindow.xaml">
+             ShutdownMode="OnExplicitShutdown">
     <Application.Resources>
-         
+        <Style TargetType="Window">
+            <Setter Property="Icon" Value="/Assets/favicon.ico"/>
+            <Setter Property="ShowInTaskbar" Value="False"/>
+            <Setter Property="WindowStyle" Value="ToolWindow"/>
+        </Style>
     </Application.Resources>
 </Application>

@@ -96,12 +96,12 @@ public class ChartInfo
 
         // --- Header (aligned widths) ---
         sb.AppendLine(
-            $"{ "Date",-20}" +
-            $"{ "Open",10}" +
-            $"{ "High",10}" +
-            $"{ "Low",10}" +
-            $"{ "Close",10}" +
-            $"{ "Volume",12}"
+            $"{"Date",-20}" +
+            $"{"Open",10}" +
+            $"{"High",10}" +
+            $"{"Low",10}" +
+            $"{"Close",10}" +
+            $"{"Volume",12}"
         );
 
         // --- Rows ---

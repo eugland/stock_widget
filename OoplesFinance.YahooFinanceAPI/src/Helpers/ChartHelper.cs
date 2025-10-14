@@ -13,7 +13,7 @@ internal class ChartHelper : YahooJsonBase
         var root = JsonConvert.DeserializeObject<ChartRoot>(jsonData)?.Chart.Result.FirstOrDefault();
         var timestamps = root?.Timestamp ?? [];
         var quotes = root?.Indicators?.Quote?.FirstOrDefault();
-        
+
         var clean = timestamps
             .Select((t, i) => new
             {
@@ -38,7 +38,7 @@ internal class ChartHelper : YahooJsonBase
             VolumeList = clean.Select(x => (long)x.Volume!.Value).ToList()
         };
 
-        if (result.DateList.Count == 0 || result.CloseList.Count == 0 || result.OpenList.Count == 0 || result.HighList.Count == 0 || 
+        if (result.DateList.Count == 0 || result.CloseList.Count == 0 || result.OpenList.Count == 0 || result.HighList.Count == 0 ||
             result.VolumeList.Count == 0 || result.LowList.Count == 0)
         {
             throw new InvalidOperationException("Requested Information Not Available On Yahoo Finance");

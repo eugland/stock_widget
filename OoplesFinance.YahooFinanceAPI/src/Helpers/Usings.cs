@@ -1,11 +1,11 @@
-﻿global using OoplesFinance.YahooFinanceAPI.Models;
+﻿global using Newtonsoft.Json;
+global using Newtonsoft.Json.Linq;
 global using OoplesFinance.YahooFinanceAPI.Enums;
 global using OoplesFinance.YahooFinanceAPI.Helpers;
+global using OoplesFinance.YahooFinanceAPI.Interfaces;
+global using OoplesFinance.YahooFinanceAPI.Models;
 global using System.Globalization;
 global using System.Net;
+global using System.Net.Http;
 global using static OoplesFinance.YahooFinanceAPI.Helpers.DownloadHelper;
 global using static OoplesFinance.YahooFinanceAPI.Helpers.UrlHelper;
-global using OoplesFinance.YahooFinanceAPI.Interfaces;
-global using Newtonsoft.Json;
-global using System.Net.Http;
-global using Newtonsoft.Json.Linq;

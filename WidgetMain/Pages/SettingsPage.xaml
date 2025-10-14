@@ -1,0 +1,109 @@
+<!-- Pages/SettingsPage.xaml -->
+<Page
+    x:Class="WidgetMain.Pages.SettingsPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:controls="using:Microsoft.UI.Xaml.Controls"
+    xmlns:local="using:WidgetMain.Converters"
+    mc:Ignorable="d">
+
+    <ScrollViewer>
+        <StackPanel Spacing="24" Padding="24">
+
+            <!-- Header -->
+            <TextBlock Text="Settings" FontSize="28" FontWeight="SemiBold"/>
+
+            <!-- Appearance -->
+            <StackPanel Spacing="12">
+                <TextBlock Text="Appearance" FontSize="18" FontWeight="SemiBold"/>
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                    <TextBlock Text="Theme" VerticalAlignment="Center" Width="120"/>
+                    <ComboBox Width="180"
+                              SelectedItem="{x:Bind ViewModel.Settings.Theme, Mode=TwoWay}">
+                        <x:String>Default</x:String>
+                        <x:String>Light</x:String>
+                        <x:String>Dark</x:String>
+                    </ComboBox>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                    <TextBlock Text="Accent Color" VerticalAlignment="Center" Width="120"/>
+                    <ColorPicker Color="{x:Bind ViewModel.Settings.AccentColor, Mode=TwoWay}"
+                                 IsAlphaEnabled="False" />
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                    <TextBlock Text="App Opacity" VerticalAlignment="Center" Width="120"/>
+                    <Slider Minimum="0.5" Maximum="1.0" StepFrequency="0.05"
+                            Value="{x:Bind ViewModel.Settings.Opacity, Mode=TwoWay}"
+                            Width="260"/>
+                    <TextBlock Text="{x:Bind ViewModel.Settings.Opacity, Mode=OneWay}"
+                               Width="60"/>
+                </StackPanel>
+
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                    <ToggleSwitch Header="Use Mica Backdrop"
+                                  IsOn="{x:Bind ViewModel.Settings.UseMica, Mode=TwoWay}" />
+                    <ToggleSwitch Header="Always on Top"
+                                  IsOn="{x:Bind ViewModel.Settings.AlwaysOnTop, Mode=TwoWay}" />
+                </StackPanel>
+            </StackPanel>
+
+            <controls:InfoBar Severity="Informational"
+                              IsOpen="True"
+                              Message="Opacity applies to widget windows; Mica requires Windows 11." />
+
+            <!-- Data -->
+            <StackPanel Spacing="12">
+                <TextBlock Text="Data n Refresh" FontSize="18" FontWeight="SemiBold"/>
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                    <TextBlock Text="Refresh (sec)" VerticalAlignment="Center" Width="120"/>
+                    <NumberBox Minimum="5" Maximum="600" SmallChange="5"
+                               Value="{x:Bind ViewModel.Settings.RefreshSeconds, Mode=TwoWay}"/>
+                </StackPanel>
+                <CheckBox Content="Show grid lines on charts"
+                          IsChecked="{x:Bind ViewModel.Settings.ShowGridLines, Mode=TwoWay}"/>
+            </StackPanel>
+
+            <!-- Hotkeys -->
+            <StackPanel Spacing="12">
+                <TextBlock Text="Hotkeys" FontSize="18" FontWeight="SemiBold"/>
+                <StackPanel Orientation="Horizontal" Spacing="12">
+                    <TextBlock Text="Toggle Widgets" VerticalAlignment="Center" Width="120"/>
+                    <TextBox Width="260"
+                             Text="{x:Bind ViewModel.Settings.Hotkey, Mode=TwoWay}"
+                             KeyDown="HotkeyBox_KeyDown"
+                             PlaceholderText="Press a key combo (e.g., Ctrl+Shift+W)"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Tickers -->
+            <StackPanel Spacing="12">
+                <TextBlock Text="Tickers" FontSize="18" FontWeight="SemiBold"/>
+                <ItemsControl ItemsSource="{x:Bind ViewModel.Settings.Tickers, Mode=OneWay}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate x:DataType="x:String">
+                            <StackPanel Orientation="Horizontal" Spacing="8">
+                                <TextBox Text="{Binding ., Mode=TwoWay}" Width="120"/>
+                                <Button Content="Remove" Click="RemoveTicker_Click"/>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <StackPanel Orientation="Horizontal" Spacing="8">
+                    <TextBox x:Name="NewTickerBox" Width="120" PlaceholderText="Add ticker"/>
+                    <Button Content="Add" Click="AddTicker_Click"/>
+                </StackPanel>
+            </StackPanel>
+
+            <!-- Actions -->
+            <StackPanel Orientation="Horizontal" Spacing="12">
+                <Button Content="Save" Click="Save_Click"/>
+                <Button Content="Reset to Defaults" Click="Reset_Click"/>
+            </StackPanel>
+
+        </StackPanel>
+    </ScrollViewer>
+</Page>

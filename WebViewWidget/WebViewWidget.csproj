@@ -5,16 +5,34 @@
     <TargetFramework>net9.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-      
+    <UseWindowsForms>true</UseWindowsForms>
     <UseWPF>true</UseWPF>
+    <PackageIcon>favicon.ico</PackageIcon>
+    <ApplicationIcon>Assets\favicon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3537.50" />
+    <Resource Include="Assets\favicon.ico" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3537.50" />
+      
+  </ItemGroup>
+
+    <ItemGroup>
+        <Reference Include="System.Windows.Forms" />
+    </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\OoplesFinance.YahooFinanceAPI\src\OoplesFinance.YahooFinanceAPI.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Assets\favicon.ico">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
   </ItemGroup>
 
 </Project>

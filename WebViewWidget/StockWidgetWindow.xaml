@@ -1,0 +1,95 @@
+<!-- WebViewWidget.NativeWindow.xaml -->
+<Window x:Class="WebViewWidget.StockWidgetWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:local="clr-namespace:WebViewWidget"
+        Title="Widget"
+        Width="960" Height="560"
+        Background="#121316"
+        SnapsToDevicePixels="True"
+        ShowInTaskbar="False"
+        UseLayoutRounding="True">
+    <Grid Margin="12">
+        <Border CornerRadius="18" Background="#15171B" Padding="16">
+            <Grid>
+                <!-- Structured rows: header / chart / footer -->
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                </Grid.RowDefinitions>
+
+                <!-- Header -->
+                <Grid Margin="4" Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Left: Symbol + Range -->
+                    <StackPanel Orientation="Horizontal" Margin="0,0,12,0" VerticalAlignment="Center">
+                        <TextBlock Text="{Binding Symbol}"
+                                   FontSize="24"
+                                   FontWeight="Bold"
+                                   Foreground="#F5F7FA"
+                                   Margin="0,0,8,0"/>
+                        <TextBlock Text="•"
+                                   FontSize="16"
+                                   Foreground="#6C7480"
+                                   Margin="0,0,8,0"
+                                   VerticalAlignment="Center"/>
+                        <TextBlock Text="{Binding RangeLabel}"
+                                   Foreground="#A9B1BB"
+                                   VerticalAlignment="Center"/>
+                    </StackPanel>
+
+                    <!-- Right: Price + Change -->
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal"
+                                VerticalAlignment="Center"
+                                Margin="0,0,8,0"
+                                FlowDirection="LeftToRight">
+                        <TextBlock Text="{Binding Price, StringFormat={}{0:F2}}"
+                                   FontSize="26"
+                                   FontWeight="Black"
+                                   Foreground="#F5F7FA"
+                                   Margin="0,0,10,0"/>
+                        <Border Background="#153F2A"
+                                CornerRadius="14"
+                                Padding="10,4"
+                                VerticalAlignment="Center">
+                            <TextBlock Text="{Binding ChangeDisplay}"
+                                       Foreground="#72D17C"
+                                       FontWeight="SemiBold"/>
+                        </Border>
+                    </StackPanel>
+                </Grid>
+
+                <!-- Chart -->
+                <Border Grid.Row="1"
+                        CornerRadius="14"
+                        Background="#0E0F12"
+                        Padding="0"
+                        ClipToBounds="True"
+                        Margin="0,8,0,8">
+                    <local:AreaSparkline Points="{Binding ChartPoints}"
+                                         LineThickness="3"
+                                         LineBrush="#56B6F7">
+                        <local:AreaSparkline.FillBrush>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                                <GradientStop Color="#80339AD9" Offset="0"/>
+                                <GradientStop Color="#10339AD9" Offset="1"/>
+                            </LinearGradientBrush>
+                        </local:AreaSparkline.FillBrush>
+                    </local:AreaSparkline>
+                </Border>
+
+                <!-- Footer -->
+                <TextBlock Grid.Row="2"
+                           Text="{Binding UpdatedDisplay}"
+                           Foreground="#8792A2"
+                           FontSize="12"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
