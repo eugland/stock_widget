@@ -4,6 +4,7 @@
       xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
       xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
       xmlns:local="clr-namespace:WebViewWidget"
+      xmlns:res="clr-namespace:WebViewWidget.Properties"
       mc:Ignorable="d" 
       d:DesignHeight="800" d:DesignWidth="1200"
       Title="Portfolio"
@@ -75,7 +76,7 @@
     <ScrollViewer VerticalScrollBarVisibility="Auto">
         <StackPanel Margin="24">
             <!-- The header content is now the first item in the scrolling stack -->
-            <TextBlock Text="My Stock Portfolio" FontSize="28" FontWeight="Bold" Foreground="White"/>
+            <TextBlock Text="{x:Static res:Strings.Portfolio_my_stock_portfolio}" FontSize="28" FontWeight="Bold" Foreground="White"/>
             <TextBlock Text="Add stocks to your portfolio to track their performance." FontSize="16" Foreground="#9CA3AF" Margin="0,4,0,0"/>
 
             <Grid Margin="0,16,0,0">

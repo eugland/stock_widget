@@ -1,29 +1,39 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using UserControl = System.Windows.Controls.UserControl;
 
-namespace WebViewWidget
+namespace WebViewWidget;
+
+public partial class SettingsPage : Page
 {
-    /// <summary>
-    /// Interaction logic for SettingsPage.xaml
-    /// </summary>
-    public partial class SettingsPage : Page
+    private static readonly SettingsService settings = SettingsService.Instance;
+
+    public SettingsPage()
     {
-        public SettingsPage()
+        InitializeComponent();
+        DataContext = settings;
+        Loaded += (_, __) =>
         {
-            InitializeComponent();
+            LanguageCombo.SelectedValue = settings.Language;
+        };
+    }
+
+
+
+    private void LanguageCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        var sel = LanguageCombo.SelectedValue as string;
+        if (!string.IsNullOrWhiteSpace(sel) &&
+            !string.Equals(sel, settings.Language, System.StringComparison.OrdinalIgnoreCase))
+        {
+            settings.Language = sel;
         }
     }
+
+    private void OpenMicrosoftStore_Click(object sender, RoutedEventArgs e)
+    {
+        const string storeUri = "ms-windows-store://pdp/?productid=9WZDNCRFJ2R6";
+        Process.Start(new ProcessStartInfo(storeUri) { UseShellExecute = true });
+    }
+
 }

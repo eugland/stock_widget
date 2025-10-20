@@ -15,6 +15,7 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 using Brushes = System.Windows.Media.Brushes;
 using Brush = System.Windows.Media.Brush;
+using System.Diagnostics;
 
 namespace WebViewWidget
 {
@@ -25,19 +26,13 @@ namespace WebViewWidget
 
         public PortfolioPage()
         {
-            InitializeComponent();
+            InitializeComponent(); 
             Portfolio = new ObservableCollection<StockViewModel>();
             this.DataContext = this;
-
-            // **MODIFIED**: Load the portfolio when the page is created.
-            // We call this without await in the constructor. It's an async void method
-            // that will load data in the background and update the UI when ready.
             LoadPortfolioFromSettings();
         }
 
-        /// <summary>
-        /// **NEW**: Loads the saved stock symbols from the SettingsService and fetches their current data.
-        /// </summary>
+       
         private async void LoadPortfolioFromSettings()
         {
             var savedSymbols = SettingsService.Instance.PortfolioSymbols;
@@ -45,14 +40,12 @@ namespace WebViewWidget
 
             foreach (var stockInfo in savedSymbols)
             {
-
-
                 Portfolio.Add(new StockViewModel
                 {
                     Symbol = stockInfo.Symbol,
                     Name = stockInfo.Name,
-                    Price = 0, // Placeholder price
-                    Change = 0, // Placeholder change
+                    Price = 0,
+                    Change = 0,
                     Currency = "USD",
                     ColorRating = Brushes.Green
                 });
@@ -71,7 +64,8 @@ namespace WebViewWidget
             try
             {
                 var results = await YahooClient.GetAutoCompleteInfoAsync(query);
-                var stockResults = results.Take(10).ToList();
+                var stockResults = results.Where(r => r.Type == "S" || r.Type == "E" || r.Type == "I").Take(10).ToList(); // Filter Type in [S, E, I]
+                Debug.WriteLine(string.Join(", ", stockResults.Select(r => r.Type)));
 
                 if (stockResults.Any())
                 {
@@ -91,7 +85,10 @@ namespace WebViewWidget
 
         private void SearchResultsListBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if (SearchResultsListBox.SelectedItem is not AutoCompleteResult selectedResult) return;
+            if (SearchResultsListBox.SelectedItem is not AutoCompleteResult selectedResult)
+            {
+                return;
+            }
 
             AddStockToPortfolio(selectedResult);
 
@@ -113,10 +110,13 @@ namespace WebViewWidget
                     Currency = "USD",
                     ColorRating = Brushes.Green
                 });
-
-                // **MODIFIED**: Inform the SettingsService to save the new stock.
                 SettingsService.Instance.AddStock(stock);
                 System.Diagnostics.Debug.WriteLine($"Added {stock.Symbol} to portfolio and settings.");
+                ToastService.Show($"{stock.Symbol} added to your Desktop.");
+            }
+            else
+            {
+                ToastService.Show($"{stock.Symbol} is already in your portfolio.");
             }
         }
 
@@ -125,9 +125,9 @@ namespace WebViewWidget
             if ((sender as FrameworkElement)?.DataContext is StockViewModel stockToRemove)
             {
                 Portfolio.Remove(stockToRemove);
-
-                // **MODIFIED**: Inform the SettingsService that a stock was removed.
                 SettingsService.Instance.RemoveStock(stockToRemove.Symbol);
+
+                ToastService.Show($"{stockToRemove.Symbol} Removed.");
                 System.Diagnostics.Debug.WriteLine($"Removed {stockToRemove.Symbol} from portfolio and settings.");
             }
         }
@@ -136,14 +136,12 @@ namespace WebViewWidget
         {
             if ((sender as FrameworkElement)?.DataContext is StockViewModel stockToConfigure)
             {
-                // Your existing logic for the edit window
                 var settingsWindow = new ChartSettingsWindow(stockToConfigure);
                 settingsWindow.Owner = Window.GetWindow(this);
                 settingsWindow.ShowDialog();
             }
         }
 
-        // The remaining event handlers for TimeFrame, Currency, etc. are unchanged.
         #region Unchanged UI Event Handlers
         private void TimeFrame_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
@@ -177,7 +175,6 @@ namespace WebViewWidget
         #endregion
     }
 
-    // Your StockViewModel class is unchanged
     public class StockViewModel : INotifyPropertyChanged
     {
         private Brush _colorRating = Brushes.Transparent;

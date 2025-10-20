@@ -3,3 +3,18 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+
+@'
+# IDE
+.vs/
+.idea/
+.vscode/
+
+# Build
+bin/
+obj/
+
+# User files
+*.user
+*.suo
+'@ | Out-File -Encoding utf8 .gitignore

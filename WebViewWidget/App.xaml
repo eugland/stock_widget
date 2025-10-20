@@ -8,5 +8,82 @@
             <Setter Property="ShowInTaskbar" Value="False"/>
             <Setter Property="WindowStyle" Value="ToolWindow"/>
         </Style>
+
+        <SolidColorBrush x:Key="Clr.Card"        Color="#15171B"/>
+        <SolidColorBrush x:Key="Clr.Border"      Color="#25272C"/>
+        <SolidColorBrush x:Key="Clr.Input"       Color="#1A1D22"/>
+        <SolidColorBrush x:Key="Clr.Text"        Color="#E6E6E6"/>
+        <SolidColorBrush x:Key="Clr.Muted"       Color="#A9B1BB"/>
+        <SolidColorBrush x:Key="Clr.Hover"       Color="#2B3038"/>
+        <SolidColorBrush x:Key="Clr.Pressed"     Color="#384150"/>
+        <SolidColorBrush x:Key="Clr.Accent"      Color="#56B6F7"/>
+        <SolidColorBrush x:Key="Clr.AccentText"  Color="#121316"/>
+        <SolidColorBrush x:Key="Clr.DisabledBg"  Color="#14161A"/>
+        <SolidColorBrush x:Key="Clr.DisabledFg"  Color="#6C7380"/>
+
+        <!-- Button -->
+        <Style x:Key="PrimaryButton" TargetType="Button">
+            <Setter Property="Foreground" Value="{StaticResource Clr.AccentText}"/>
+            <Setter Property="Background" Value="{StaticResource Clr.Accent}"/>
+            <Setter Property="BorderBrush" Value="{x:Null}"/>
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="Button">
+                        <Border Background="{TemplateBinding Background}"
+                CornerRadius="6">
+                            <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="#6BC0FA"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" Value="#3DA9EE"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" Value="{StaticResource Clr.DisabledBg}"/>
+                                <Setter Property="Foreground" Value="{StaticResource Clr.DisabledFg}"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
+        <Style x:Key="DarkComboBox" TargetType="ComboBox">
+            <!-- Local resources for this control -->
+            <Style.Resources>
+                <SolidColorBrush x:Key="{x:Static SystemColors.HighlightBrushKey}" Color="#384150"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.ControlBrushKey}"   Color="#15171B"/>
+                <SolidColorBrush x:Key="{x:Static SystemColors.WindowBrushKey}"    Color="#15171B"/>
+            </Style.Resources>
+
+            <!-- Visuals -->
+            <Setter Property="Foreground" Value="#E6E6E6"/>
+            <Setter Property="Background" Value="#1A1D22"/>
+            <Setter Property="BorderBrush" Value="#25272C"/>
+            <Setter Property="Padding" Value="10,6"/>
+            <Setter Property="SnapsToDevicePixels" Value="True"/>
+
+            <!-- Larger, easier-to-click items -->
+            <Setter Property="ItemContainerStyle">
+                <Setter.Value>
+                    <Style TargetType="ComboBoxItem">
+                        <Setter Property="Foreground" Value="#E6E6E6"/>
+                        <Setter Property="Background" Value="#374151"/>
+                        <Setter Property="MinHeight" Value="36"/>
+                        <Setter Property="Padding" Value="12,8"/>
+                        <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                    </Style>
+                </Setter.Value>
+            </Setter>
+        </Style>
+
     </Application.Resources>
+
+
 </Application>
+    
+

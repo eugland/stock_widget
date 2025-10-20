@@ -1,120 +1,203 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-using System;
-using System.Collections.Generic;
+﻿using OoplesFinance.YahooFinanceAPI.Models;
+using System.ComponentModel;
+using System.Diagnostics;
+using System.Globalization;
 using System.IO;
-using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
-using OoplesFinance.YahooFinanceAPI.Models;
+using System.Windows;
+using Application = System.Windows.Application;
 
-namespace WebViewWidget
+namespace WebViewWidget;
+
+public enum PortfolioChangeType
 {
-    /// <summary>
-    /// A singleton service to manage application settings, persisting them to a local JSON file.
-    /// </summary>
-    public sealed class SettingsService
+    Added,
+    Removed,
+    Updated,
+    Cleared
+}
+
+public sealed class PortfolioChangedEventArgs(PortfolioChangeType kind, string symbol) : EventArgs
+{
+    public PortfolioChangeType Kind { get; } = kind;
+    public string Symbol { get; } = symbol;
+}
+
+public sealed class SettingsService : INotifyPropertyChanged
+{
+    private static readonly Lazy<SettingsService> _instance = new(() => new SettingsService());
+    public static SettingsService Instance => _instance.Value;
+
+    public event PropertyChangedEventHandler? PropertyChanged;
+    public event EventHandler<PortfolioChangedEventArgs>? PortfolioChanged;
+
+    private readonly string _filePath;
+    private readonly Dictionary<string, object> _settings = new(StringComparer.OrdinalIgnoreCase);
+
+    public List<AutoCompleteResult> PortfolioSymbols
     {
-        // --- Singleton Implementation ---
-        // This ensures only one instance of SettingsService ever exists.
-        private static readonly Lazy<SettingsService> _instance = new Lazy<SettingsService>(() => new SettingsService());
-        public static SettingsService Instance => _instance.Value;
-        // --- End Singleton ---
-
-        private readonly string _filePath;
-
-        /// <summary>
-        /// The list of stock symbols in the user's portfolio.
-        /// </summary>
-        public List<AutoCompleteResult> PortfolioSymbols { get; private set; }
-
-        /// <summary>
-        /// Private constructor to prevent creating new instances and to load settings on startup.
-        /// </summary>
-        private SettingsService()
+        get => _settings.TryGetValue(nameof(PortfolioSymbols), out var value) && value is List<AutoCompleteResult> list
+            ? list
+            : [];
+        private set
         {
-            // Define the path where the settings file will be stored.
-            // This is typically in C:\Users\<YourUser>\AppData\Roaming\WebViewWidget\settings.json
-            string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
-            string appFolderPath = Path.Combine(appDataPath, "WebViewWidget");
-            _filePath = Path.Combine(appFolderPath, "settings.json");
-
-            PortfolioSymbols = new List<AutoCompleteResult>();
-            LoadSettings();
-        }
-
-        /// <summary>
-        /// Loads the settings from the JSON file into memory.
-        /// </summary>
-        private void LoadSettings()
-        {
-            try
-            {
-                if (File.Exists(_filePath))
-                {
-                    string json = File.ReadAllText(_filePath);
-                    var savedSymbols = JsonSerializer.Deserialize<List<AutoCompleteResult>>(json);
-                    if (savedSymbols != null)
-                    {
-                        PortfolioSymbols = savedSymbols;
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                // Handle potential errors like corrupted files
-                System.Diagnostics.Debug.WriteLine($"Error loading settings: {ex.Message}");
-                PortfolioSymbols = []; // Reset to default if loading fails
-            }
-        }
-
-        /// <summary>
-        /// Saves the current settings from memory to the JSON file.
-        /// </summary>
-        private void SaveSettings()
-        {
-            try
-            {
-                // Ensure the directory exists
-                Directory.CreateDirectory(Path.GetDirectoryName(_filePath)!);
-
-                string json = JsonSerializer.Serialize(PortfolioSymbols, new JsonSerializerOptions { WriteIndented = true });
-                File.WriteAllText(_filePath, json);
-            }
-            catch (Exception ex)
-            {
-                System.Diagnostics.Debug.WriteLine($"Error saving settings: {ex.Message}");
-            }
-        }
-
-        /// <summary>
-        /// Adds a stock symbol to the portfolio and saves the changes.
-        /// </summary>
-        public void AddStock(AutoCompleteResult symbol)
-        {
-            if (!PortfolioSymbols.Contains(symbol))
-            {
-                PortfolioSymbols.Add(symbol);
-                SaveSettings();
-            }
-        }
-
-        /// <summary>
-        /// Removes a stock symbol from the portfolio and saves the changes.
-        /// </summary>
-        public void RemoveStock(string symbol)
-        {
-            if (string.IsNullOrWhiteSpace(symbol))
-                return;
-
-            // Remove all entries where the Symbol matches (case-insensitive)
-            PortfolioSymbols.RemoveAll(s =>
-                string.Equals(s.Symbol, symbol, StringComparison.OrdinalIgnoreCase));
-
+            _settings[nameof(PortfolioSymbols)] = value;
+            OnPropertyChanged();
             SaveSettings();
         }
+    }
+
+    public string Language
+    {
+        get
+        {
+            if (_settings.TryGetValue(nameof(Language), out var value) && value is string lang && !string.IsNullOrWhiteSpace(lang)) return lang;
+            string systemLang = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
+            Debug.WriteLine($"Got System Lang {systemLang}");
+            if (!new[] { "en", "zh", "ja", "ko", "es" }.Contains(systemLang))
+                systemLang = "en";
+
+            _settings[nameof(Language)] = systemLang;
+            SaveSettings();
+
+            return systemLang;
+        }
+        set
+        {
+            if (Language == value) return;
+            _settings[nameof(Language)] = value;
+            SaveSettings();
+            RestartApplication();
+        }
+    }
+
+    private SettingsService()
+    {
+        string appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
+        string appFolderPath = Path.Combine(appDataPath, "WebViewWidget");
+        _filePath = Path.Combine(appFolderPath, "settings.json");
+
+        LoadSettings();
+    }
+
+    private void OnPropertyChanged([CallerMemberName] string? name = null)
+        => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+
+    private void LoadSettings()
+    {
+        try
+        {
+            if (!File.Exists(_filePath))
+                return;
+
+            string json = File.ReadAllText(_filePath);
+            var dict = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(json);
+
+            if (dict == null) return;
+
+            foreach (var kvp in dict)
+            {
+                if (kvp.Key == nameof(PortfolioSymbols))
+                {
+                    try
+                    {
+                        var portfolio = kvp.Value.Deserialize<List<AutoCompleteResult>>();
+                        if (portfolio != null)
+                            _settings[nameof(PortfolioSymbols)] = portfolio;
+                    }
+                    catch { }
+                }
+                else if (kvp.Value.ValueKind == JsonValueKind.String)
+                {
+                    _settings[kvp.Key] = kvp.Value.GetString()!;
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error loading settings: {ex.Message}");
+            _settings.Clear();
+        }
+    }
+
+    private void SaveSettings()
+    {
+        try
+        {
+            Directory.CreateDirectory(Path.GetDirectoryName(_filePath)!);
+
+            var json = JsonSerializer.Serialize(_settings, new JsonSerializerOptions
+            {
+                WriteIndented = true
+            });
+
+            File.WriteAllText(_filePath, json);
+        }
+        catch (Exception ex)
+        {
+            System.Diagnostics.Debug.WriteLine($"Error saving settings: {ex.Message}");
+        }
+    }
+
+    public void AddStock(AutoCompleteResult symbol)
+    {
+        var list = PortfolioSymbols;
+        if (list.Any(s => s.Symbol.Equals(symbol.Symbol, StringComparison.OrdinalIgnoreCase)))
+            return;
+
+        list.Add(symbol);
+        PortfolioSymbols = list;
+        PortfolioChanged?.Invoke(this, new PortfolioChangedEventArgs(PortfolioChangeType.Added, symbol.Symbol));
+    }
+
+    public void RemoveStock(string symbol)
+    {
+        if (string.IsNullOrWhiteSpace(symbol)) return;
+
+        var list = PortfolioSymbols;
+        list.RemoveAll(s => string.Equals(s.Symbol, symbol, StringComparison.OrdinalIgnoreCase));
+        PortfolioSymbols = list;
+        PortfolioChanged?.Invoke(this, new PortfolioChangedEventArgs(PortfolioChangeType.Removed, symbol));
+    }
+
+    public void SetSetting<T>(string key, T value)
+    {
+        _settings[key] = value!;
+        OnPropertyChanged(key);
+        SaveSettings();
+    }
+
+    public T GetSetting<T>(string key, T defaultValue = default!)
+    {
+        if (_settings.TryGetValue(key, out var value) && value is JsonElement je)
+        {
+            try
+            {
+                return JsonSerializer.Deserialize<T>(je.GetRawText()) ?? defaultValue;
+            }
+            catch { }
+        }
+
+        if (_settings.TryGetValue(key, out var obj) && obj is T typed)
+            return typed;
+
+        return defaultValue;
+    }
+
+    private static void RestartApplication()
+    {
+        // Get the running exe path
+        string exePath = System.Diagnostics.Process.GetCurrentProcess().MainModule!.FileName!;
+
+        // Start a new instance
+        System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
+        {
+            FileName = exePath,
+            UseShellExecute = true
+        });
+
+        // Kill the current instance cleanly
+        Application.Current.Shutdown();
     }
 }

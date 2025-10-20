@@ -1,0 +1,12 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+
+    <sys:String x:Key="App.Title">股票小组件</sys:String>
+    <sys:String x:Key="Settings.Language">语言</sys:String>
+    <sys:String x:Key="Settings.Apply">应用</sys:String>
+    <sys:String x:Key="Premium.Header">高级功能</sys:String>
+
+    <sys:String x:Key="Portfolio.my_stock_portfolio">我的持仓</sys:String>
+
+</ResourceDictionary>

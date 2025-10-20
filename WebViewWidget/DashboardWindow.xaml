@@ -95,6 +95,17 @@
                NavigationUIVisibility="Hidden"
                />
 
+        <StackPanel x:Name="ToastPanel"
+            Grid.ColumnSpan="3"
+            VerticalAlignment="Bottom"
+            HorizontalAlignment="Right"
+            Margin="0,0,24,24"
+            Panel.ZIndex="999"
+            Orientation="Vertical"
+            Width="260" Height="100"
+
+            IsHitTestVisible="False"/>
+
 
     </Grid>
 </Window>
