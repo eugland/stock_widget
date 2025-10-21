@@ -61,11 +61,56 @@ namespace WebViewWidget.Properties {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Stock Widget.
+        ///   Looks up a localized string similar to Ready.
         /// </summary>
-        public static string App_Title {
+        public static string Footer_Ready {
             get {
-                return ResourceManager.GetString("App.Title", resourceCulture);
+                return ResourceManager.GetString("Footer.Ready", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to ❌ Exit.
+        /// </summary>
+        public static string Menu_Exits {
+            get {
+                return ResourceManager.GetString("Menu.Exits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 😌 Hide All Widgets.
+        /// </summary>
+        public static string Menu_HideAllWidgets {
+            get {
+                return ResourceManager.GetString("Menu.HideAllWidgets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to 👀 Show All Widgets.
+        /// </summary>
+        public static string Menu_ShowAllWidgets {
+            get {
+                return ResourceManager.GetString("Menu.ShowAllWidgets", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Portfolio.
+        /// </summary>
+        public static string Nav_Portfolio {
+            get {
+                return ResourceManager.GetString("Nav.Portfolio", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Settings.
+        /// </summary>
+        public static string Nav_Settings {
+            get {
+                return ResourceManager.GetString("Nav.Settings", resourceCulture);
             }
         }
         
@@ -88,6 +133,15 @@ namespace WebViewWidget.Properties {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Stock Widget.
+        /// </summary>
+        public static string R {
+            get {
+                return ResourceManager.GetString("R", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Apply.
         /// </summary>
         public static string Settings_Apply {
@@ -102,6 +156,24 @@ namespace WebViewWidget.Properties {
         public static string Settings_Language {
             get {
                 return ResourceManager.GetString("Settings.Language", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Stock Widget.
+        /// </summary>
+        public static string Tray_Header {
+            get {
+                return ResourceManager.GetString("Tray.Header", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Still running here. Double-click to reopen..
+        /// </summary>
+        public static string Tray_ReopenHint {
+            get {
+                return ResourceManager.GetString("Tray.ReopenHint", resourceCulture);
             }
         }
     }

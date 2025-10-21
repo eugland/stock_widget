@@ -1,8 +1,10 @@
 ﻿
 using System.Data;
+using System.Diagnostics;
 using System.Globalization;
 using System.Windows;
 using System.Windows.Markup;
+using WebViewWidget.Properties;
 using Application = System.Windows.Application;
 
 namespace WebViewWidget;
@@ -22,6 +24,9 @@ public partial class App : Application
     {
         base.OnStartup(e);
         var settings = SettingsService.Instance;
+
+        string route = e.Args.FirstOrDefault(a => a.StartsWith("--route=", StringComparison.OrdinalIgnoreCase))
+                      ?.Substring("--route=".Length) ?? "default";
 
         // Get normalized 2-letter language from your SettingsService
         var lang = settings.Language; // e.g., "en", "zh", "ja", "ko", "es"
@@ -56,11 +61,18 @@ public partial class App : Application
                       .ToList();
 
         var showService = StockWindowService.Instance;
-        ShowMainWindow();
+        if (route.Equals("settings", StringComparison.OrdinalIgnoreCase))
+        {
+            Debug.WriteLine("Recognized settings route");
+            ShowMainWindow(1);
+        } else
+        {
+            ShowMainWindow(0);
+        }
         showService.ShowAllStockWindows();
-        menu.Items.Add("👀 Show All Widgets", null, (_, __) => showService.ShowAllStockWindows());
-        menu.Items.Add("😌 Hide All Widgets", null, (_, __) => showService.HideAllStockWindows()); 
-        menu.Items.Add("❌ Exit", null, (_, __) => ExitApp());
+        menu.Items.Add(Strings.Menu_ShowAllWidgets, null, (_, __) => showService.ShowAllStockWindows());
+        menu.Items.Add(Strings.Menu_HideAllWidgets, null, (_, __) => showService.HideAllStockWindows()); 
+        menu.Items.Add(Strings.Menu_Exits, null, (_, __) => ExitApp());
         _tray.ContextMenuStrip = menu;
     }
     
@@ -72,11 +84,11 @@ public partial class App : Application
         return new Icon(stream);
     }
 
-    private void ShowMainWindow()
+    private void ShowMainWindow(int index = 0)
     {
         if (_main == null)
         {
-            _main = new DashboardWindow();
+            _main = new DashboardWindow(index);
         }
         _main.Show();
         _main.WindowState = WindowState.Normal;
@@ -99,8 +111,8 @@ public partial class App : Application
         // Hide instead of close → keeps tray icon alive
         e.Cancel = true;
         _main!.Hide();
-        _tray?.ShowBalloonTip(1500, "Stock Widget",
-            "Still running here. Double-click to reopen.",
+        _tray?.ShowBalloonTip(1500, Strings.Tray_Header,
+            Strings.Tray_ReopenHint,
             ToolTipIcon.Info);
     }
 

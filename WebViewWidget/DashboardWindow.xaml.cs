@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Animation;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using WebViewWidget.Properties;
 using Brush = System.Windows.Media.Brush;
 using Brushes = System.Windows.Media.Brushes;
 using Button = System.Windows.Controls.Button;
@@ -32,11 +33,11 @@ public partial class DashboardWindow : Window, INotifyPropertyChanged
         get => _footerStatus;
         set { _footerStatus = value; PropertyChanged?.Invoke(this, new(nameof(FooterStatus))); }
     }
-    private string _footerStatus = "Ready";
+    private string _footerStatus = Strings.Footer_Ready;
 
     public record NavItem(string Title, string Icon, Action Action);
 
-    public DashboardWindow()
+    public DashboardWindow(int index = 0)
     {
         InitializeComponent();
         DataContext = this;
@@ -44,13 +45,18 @@ public partial class DashboardWindow : Window, INotifyPropertyChanged
         // Build nav
         var items = new List<NavItem>
         {
-            new("Portfolio", "\uE7C3", () => ContentFrame.Navigate((new PortfolioPage())) ), // pie glyph
-            new("Settings",  "\uE713", () => ContentFrame.Navigate((new SettingsPage())) ),  // gear
+            new(Strings.Nav_Portfolio, "\uE7C3", () => ContentFrame.Navigate((new PortfolioPage())) ), // pie glyph
+            new(Strings.Nav_Settings,  "\uE713", () => ContentFrame.Navigate((new SettingsPage())) ),  // gear
         };
         NavList.ItemsSource = items;
-        NavList.SelectedIndex = 0;
+        NavList.SelectedIndex = index;
         ToastService.Register(this);
 
+    }
+
+    public void navigate_setting()
+    {
+        ContentFrame.Navigate((new SettingsPage()));
     }
 
     private void NavList_SelectionChanged(object sender, SelectionChangedEventArgs e)

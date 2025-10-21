@@ -3,8 +3,36 @@
   "WorkspaceRootPath": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|solutionrelative:webviewwidget\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\properties\\strings.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}",
       "RelativeMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|solutionrelative:webviewwidget\\properties\\strings.resx||{81828910-B8B3-4D2B-99A3-067027C180C1}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\dashboardwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|solutionrelative:webviewwidget\\dashboardwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\dashboardwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|solutionrelative:webviewwidget\\dashboardwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\settingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|solutionrelative:webviewwidget\\settingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\settingspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|solutionrelative:webviewwidget\\settingspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\portfoliopage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|solutionrelative:webviewwidget\\portfoliopage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\settingspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
+      "RelativeMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|solutionrelative:webviewwidget\\settingspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\portfoliopage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -23,24 +51,8 @@
       "RelativeMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|solutionrelative:webviewwidget\\resources\\stringresources.en.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|solutionrelative:webviewwidget\\app.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\settingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|solutionrelative:webviewwidget\\settingsservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\stockwindowservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|solutionrelative:webviewwidget\\stockwindowservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\dashboardwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|solutionrelative:webviewwidget\\dashboardwindow.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\dashboardwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|solutionrelative:webviewwidget\\dashboardwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\resources\\stringresources.zh.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
@@ -59,24 +71,12 @@
       "RelativeMoniker": "D:0:0:{A1271D61-DBD3-4D14-A543-FD0D7433F8C5}|OoplesFinance.YahooFinanceAPI\\tests\\UnitTests\\OoplesFinance.YahooFinanceAPI.Tests.Unit.csproj|solutionrelative:ooplesfinance.yahoofinanceapi\\tests\\unittests\\yahooclienttests.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\settingspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|solutionrelative:webviewwidget\\settingspage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\settingspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
-      "RelativeMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|solutionrelative:webviewwidget\\settingspage.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\stockwidgetwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}",
       "RelativeMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|solutionrelative:webviewwidget\\stockwidgetwindow.xaml||{F11ACC28-31D1-4C80-A34B-F4E09D3D753C}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{0ED86308-EF0F-459C-AEC8-9837A67F918E}|OoplesFinance.YahooFinanceAPI\\src\\OoplesFinance.YahooFinanceAPI.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\ooplesfinance.yahoofinanceapi\\src\\yahooclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{0ED86308-EF0F-459C-AEC8-9837A67F918E}|OoplesFinance.YahooFinanceAPI\\src\\OoplesFinance.YahooFinanceAPI.csproj|solutionrelative:ooplesfinance.yahoofinanceapi\\src\\yahooclient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\portfoliopage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|solutionrelative:webviewwidget\\portfoliopage.xaml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{9753DC29-02CE-6894-45DF-4365F009718A}|WebViewWidget\\WebViewWidget.csproj|c:\\users\\eugen\\riderprojects\\stockwidget\\webviewwidget\\toastservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -125,11 +125,124 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "DashboardWindow.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\DashboardWindow.xaml.cs",
+              "RelativeDocumentMoniker": "WebViewWidget\\DashboardWindow.xaml.cs",
+              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\DashboardWindow.xaml.cs",
+              "RelativeToolTip": "WebViewWidget\\DashboardWindow.xaml.cs",
+              "ViewState": "AgIAAB0AAAAAAAAAAAAmwDEAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-13T10:47:00.956Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "PortfolioPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\PortfolioPage.xaml.cs",
+              "RelativeDocumentMoniker": "WebViewWidget\\PortfolioPage.xaml.cs",
+              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\PortfolioPage.xaml.cs",
+              "RelativeToolTip": "WebViewWidget\\PortfolioPage.xaml.cs",
+              "ViewState": "AgIAADUAAAAAAAAAAAAowEEAAAAXAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-13T10:48:13.861Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "App.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\App.xaml.cs",
+              "RelativeDocumentMoniker": "WebViewWidget\\App.xaml.cs",
+              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\App.xaml.cs",
+              "RelativeToolTip": "WebViewWidget\\App.xaml.cs",
+              "ViewState": "AgIAADoAAAAAAAAAAAArwEMAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-13T10:52:39.039Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "SettingsPage.xaml",
+              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\SettingsPage.xaml",
+              "RelativeDocumentMoniker": "WebViewWidget\\SettingsPage.xaml",
+              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\SettingsPage.xaml",
+              "RelativeToolTip": "WebViewWidget\\SettingsPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-10-13T10:52:08.729Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "SettingsPage.xaml.cs",
+              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\SettingsPage.xaml.cs",
+              "RelativeDocumentMoniker": "WebViewWidget\\SettingsPage.xaml.cs",
+              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\SettingsPage.xaml.cs",
+              "RelativeToolTip": "WebViewWidget\\SettingsPage.xaml.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAABwAAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-13T10:53:01.281Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "PortfolioPage.xaml",
+              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\PortfolioPage.xaml",
+              "RelativeDocumentMoniker": "WebViewWidget\\PortfolioPage.xaml",
+              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\PortfolioPage.xaml",
+              "RelativeToolTip": "WebViewWidget\\PortfolioPage.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-10-19T03:58:15.18Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "SettingsService.cs",
+              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\SettingsService.cs",
+              "RelativeDocumentMoniker": "WebViewWidget\\SettingsService.cs",
+              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\SettingsService.cs",
+              "RelativeToolTip": "WebViewWidget\\SettingsService.cs",
+              "ViewState": "AgIAADIAAAAAAAAAAAAtwEUAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-14T05:22:28.929Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 2,
+              "Title": "DashboardWindow.xaml",
+              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\DashboardWindow.xaml",
+              "RelativeDocumentMoniker": "WebViewWidget\\DashboardWindow.xaml",
+              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\DashboardWindow.xaml",
+              "RelativeToolTip": "WebViewWidget\\DashboardWindow.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-10-14T06:25:33.028Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "App.xaml",
+              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\App.xaml",
+              "RelativeDocumentMoniker": "WebViewWidget\\App.xaml",
+              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\App.xaml",
+              "RelativeToolTip": "WebViewWidget\\App.xaml",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
+              "WhenOpened": "2025-10-13T10:52:38.222Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
               "Title": "Strings.zh.resx",
               "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\Properties\\Strings.zh.resx",
               "RelativeDocumentMoniker": "WebViewWidget\\Properties\\Strings.zh.resx",
@@ -142,69 +255,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Strings.resx",
-              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\Properties\\Strings.resx",
-              "RelativeDocumentMoniker": "WebViewWidget\\Properties\\Strings.resx",
-              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\Properties\\Strings.resx",
-              "RelativeToolTip": "WebViewWidget\\Properties\\Strings.resx",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
-              "WhenOpened": "2025-10-20T13:02:44.819Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "SettingsService.cs",
-              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\SettingsService.cs",
-              "RelativeDocumentMoniker": "WebViewWidget\\SettingsService.cs",
-              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\SettingsService.cs",
-              "RelativeToolTip": "WebViewWidget\\SettingsService.cs",
-              "ViewState": "AgIAAKUAAAAAAAAAAAAuwLkAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-14T05:22:28.929Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 10,
-              "Title": "StringResources.zh.xaml",
-              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\Resources\\StringResources.zh.xaml",
-              "RelativeDocumentMoniker": "WebViewWidget\\Resources\\StringResources.zh.xaml",
-              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\Resources\\StringResources.zh.xaml",
-              "RelativeToolTip": "WebViewWidget\\Resources\\StringResources.zh.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-10-20T11:58:13.407Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PortfolioPage.xaml",
-              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\PortfolioPage.xaml",
-              "RelativeDocumentMoniker": "WebViewWidget\\PortfolioPage.xaml",
-              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\PortfolioPage.xaml",
-              "RelativeToolTip": "WebViewWidget\\PortfolioPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-10-19T03:58:15.18Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "WebViewWidget.csproj",
-              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\WebViewWidget.csproj",
-              "RelativeDocumentMoniker": "WebViewWidget\\WebViewWidget.csproj",
-              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\WebViewWidget.csproj*",
-              "RelativeToolTip": "WebViewWidget\\WebViewWidget.csproj*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-10-13T10:46:21.823Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
               "Title": "StockWindowService.cs",
               "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\StockWindowService.cs",
               "RelativeDocumentMoniker": "WebViewWidget\\StockWindowService.cs",
@@ -216,67 +267,41 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "DashboardWindow.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\DashboardWindow.xaml.cs",
-              "RelativeDocumentMoniker": "WebViewWidget\\DashboardWindow.xaml.cs",
-              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\DashboardWindow.xaml.cs",
-              "RelativeToolTip": "WebViewWidget\\DashboardWindow.xaml.cs",
-              "ViewState": "AgIAAGUAAAAAAAAAAAAAAGYAAABUAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-13T10:47:00.956Z"
+              "DocumentIndex": 15,
+              "Title": "WebViewWidget.csproj",
+              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\WebViewWidget.csproj",
+              "RelativeDocumentMoniker": "WebViewWidget\\WebViewWidget.csproj",
+              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\WebViewWidget.csproj",
+              "RelativeToolTip": "WebViewWidget\\WebViewWidget.csproj",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACUAAAAKAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
+              "WhenOpened": "2025-10-13T10:46:21.823Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "App.xaml",
-              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\App.xaml",
-              "RelativeDocumentMoniker": "WebViewWidget\\App.xaml",
-              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\App.xaml",
-              "RelativeToolTip": "WebViewWidget\\App.xaml",
+              "DocumentIndex": 13,
+              "Title": "StringResources.zh.xaml",
+              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\Resources\\StringResources.zh.xaml",
+              "RelativeDocumentMoniker": "WebViewWidget\\Resources\\StringResources.zh.xaml",
+              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\Resources\\StringResources.zh.xaml",
+              "RelativeToolTip": "WebViewWidget\\Resources\\StringResources.zh.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-10-13T10:52:38.222Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T11:58:13.407Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 11,
               "Title": "StringResources.en.xaml",
               "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\Resources\\StringResources.en.xaml",
               "RelativeDocumentMoniker": "WebViewWidget\\Resources\\StringResources.en.xaml",
               "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\Resources\\StringResources.en.xaml",
               "RelativeToolTip": "WebViewWidget\\Resources\\StringResources.en.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-10-20T11:20:18.964Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-20T11:20:18.964Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "DashboardWindow.xaml",
-              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\DashboardWindow.xaml",
-              "RelativeDocumentMoniker": "WebViewWidget\\DashboardWindow.xaml",
-              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\DashboardWindow.xaml",
-              "RelativeToolTip": "WebViewWidget\\DashboardWindow.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-10-14T06:25:33.028Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "App.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\App.xaml.cs",
-              "RelativeDocumentMoniker": "WebViewWidget\\App.xaml.cs",
-              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\App.xaml.cs",
-              "RelativeToolTip": "WebViewWidget\\App.xaml.cs",
-              "ViewState": "AgIAAAoAAAAAAAAAAAAwwBsAAAAsAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-13T10:52:39.039Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 14,
               "Title": "ChartSettingsWindow.xaml",
               "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\ChartSettingsWindow.xaml",
               "RelativeDocumentMoniker": "WebViewWidget\\ChartSettingsWindow.xaml",
@@ -287,7 +312,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 16,
               "Title": "YahooClientTests.cs",
               "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\OoplesFinance.YahooFinanceAPI\\tests\\UnitTests\\YahooClientTests.cs",
               "RelativeDocumentMoniker": "OoplesFinance.YahooFinanceAPI\\tests\\UnitTests\\YahooClientTests.cs",
@@ -311,7 +336,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "YahooClient.cs",
               "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\OoplesFinance.YahooFinanceAPI\\src\\YahooClient.cs",
               "RelativeDocumentMoniker": "OoplesFinance.YahooFinanceAPI\\src\\YahooClient.cs",
@@ -365,8 +390,7 @@
               "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\WebViewWidget.csproj",
               "RelativeToolTip": "WebViewWidget\\WebViewWidget.csproj",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2025-10-14T07:10:17.043Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-10-14T07:10:17.043Z"
             },
             {
               "$type": "Document",
@@ -382,7 +406,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "StockWidgetWindow.xaml",
               "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\StockWidgetWindow.xaml",
               "RelativeDocumentMoniker": "WebViewWidget\\StockWidgetWindow.xaml",
@@ -390,41 +414,6 @@
               "RelativeToolTip": "WebViewWidget\\StockWidgetWindow.xaml",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
               "WhenOpened": "2025-10-18T23:26:53.507Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 15,
-              "Title": "SettingsPage.xaml",
-              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\SettingsPage.xaml",
-              "RelativeDocumentMoniker": "WebViewWidget\\SettingsPage.xaml",
-              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\SettingsPage.xaml",
-              "RelativeToolTip": "WebViewWidget\\SettingsPage.xaml",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003549|",
-              "WhenOpened": "2025-10-13T10:52:08.729Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 14,
-              "Title": "SettingsPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\SettingsPage.xaml.cs",
-              "RelativeDocumentMoniker": "WebViewWidget\\SettingsPage.xaml.cs",
-              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\SettingsPage.xaml.cs",
-              "RelativeToolTip": "WebViewWidget\\SettingsPage.xaml.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAuwAgAAABGAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-13T10:53:01.281Z"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 18,
-              "Title": "PortfolioPage.xaml.cs",
-              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\PortfolioPage.xaml.cs",
-              "RelativeDocumentMoniker": "WebViewWidget\\PortfolioPage.xaml.cs",
-              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\PortfolioPage.xaml.cs",
-              "RelativeToolTip": "WebViewWidget\\PortfolioPage.xaml.cs",
-              "ViewState": "AgIAAGgAAAAAAAAAAAAAAHMAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-13T10:48:13.861Z"
             },
             {
               "$type": "Document",
@@ -473,6 +462,24 @@
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-10-13T11:07:31.287Z"
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "Strings.resx",
+              "DocumentMoniker": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\Properties\\Strings.resx",
+              "RelativeDocumentMoniker": "WebViewWidget\\Properties\\Strings.resx",
+              "ToolTip": "C:\\Users\\eugen\\RiderProjects\\StockWidget\\WebViewWidget\\Properties\\Strings.resx",
+              "RelativeToolTip": "WebViewWidget\\Properties\\Strings.resx",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001005|",
+              "WhenOpened": "2025-10-20T13:08:42.596Z",
+              "EditorCaption": ""
             }
           ]
         }

@@ -5,7 +5,6 @@ using System.Globalization;
 using System.IO;
 using System.Runtime.CompilerServices;
 using System.Text.Json;
-using System.Windows;
 using Application = System.Windows.Application;
 
 namespace WebViewWidget;
@@ -68,7 +67,7 @@ public sealed class SettingsService : INotifyPropertyChanged
             if (Language == value) return;
             _settings[nameof(Language)] = value;
             SaveSettings();
-            RestartApplication();
+            RestartApplication("settings");
         }
     }
 
@@ -185,7 +184,7 @@ public sealed class SettingsService : INotifyPropertyChanged
         return defaultValue;
     }
 
-    private static void RestartApplication()
+    private static void RestartApplication(string route = "default")
     {
         // Get the running exe path
         string exePath = System.Diagnostics.Process.GetCurrentProcess().MainModule!.FileName!;
@@ -194,6 +193,7 @@ public sealed class SettingsService : INotifyPropertyChanged
         System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo
         {
             FileName = exePath,
+            Arguments = $"--route={route}",
             UseShellExecute = true
         });
 
