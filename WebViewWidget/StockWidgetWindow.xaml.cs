@@ -19,7 +19,7 @@ using Timer = System.Timers.Timer;
 
 namespace WebViewWidget;
 
-public partial class StockWidgetWindow : Window, INotifyPropertyChanged {
+public partial class StockWidgetWindow : INotifyPropertyChanged {
     private static readonly IntPtr HWND_BOTTOM = new(1);
     private readonly string _symbol = "CRWV";
     private readonly Timer _timer = new(60_000);
@@ -38,11 +38,13 @@ public partial class StockWidgetWindow : Window, INotifyPropertyChanged {
         DataContext = this;
 
         RootGrid.MouseLeftButtonDown += (obj, e) => {
-            if (IsOnInteractiveElement(e.OriginalSource as DependencyObject)) return;
+            if (IsOnInteractiveElement(e.OriginalSource as DependencyObject)) {
+                return;
+            }
+
             try {
                 DragMove();
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 Debug.WriteLine($"[DEBUG] DragMove exception: {ex.Message}");
             }
         };
@@ -55,8 +57,8 @@ public partial class StockWidgetWindow : Window, INotifyPropertyChanged {
         Debug.WriteLine("starting " + ticker);
     }
 
-    public TimeRange SelectedTimeRange { get; private set; } = TimeRange._1Day;
-    public TimeInterval SelectedTimeInterval { get; private set; } = TimeInterval._2Minutes;
+    private TimeRange SelectedTimeRange { get; set; } = TimeRange._1Day;
+    private TimeInterval SelectedTimeInterval { get; set; } = TimeInterval._2Minutes;
 
     public string Symbol {
         get => _symbol;
@@ -121,7 +123,6 @@ public partial class StockWidgetWindow : Window, INotifyPropertyChanged {
     public void ChangeTimeRange(TimeRange range, TimeInterval interval) {
         SelectedTimeRange = range;
         SelectedTimeInterval = interval;
-
         _ = RefreshFromYahooAsync();
     }
 
@@ -135,24 +136,32 @@ public partial class StockWidgetWindow : Window, INotifyPropertyChanged {
         button.Foreground = new SolidColorBrush(Color.FromRgb(86, 182, 247));
         button.FontWeight = FontWeights.Bold;
         button.Background = new SolidColorBrush(Color.FromArgb(40, 86, 182, 247));
-
         _activeButton = button;
     }
 
     private void TimeRangeButton_Click(object sender, RoutedEventArgs e) {
-        if (sender is not Button { Tag: string tag } button) return;
+        if (sender is not Button { Tag: string tag } button) {
+            return;
+        }
 
 
         var parts = tag.Split(',');
-        if (parts.Length != 2) return;
+        if (parts.Length != 2) {
+            return;
+        }
 
         if (!Enum.TryParse<TimeRange>(parts[0], out var range) ||
-            !Enum.TryParse<TimeInterval>(parts[1], out var interval)) return;
+            !Enum.TryParse<TimeInterval>(parts[1], out var interval)) {
+            return;
+        }
+
         Debug.WriteLine($"[DEBUG] Parsed TimeRange={range}, TimeInterval={interval}. Invoking ChangeTimeRange.");
         ChangeTimeRange(range, interval);
 
-        if (_activeButton != null)
+        if (_activeButton != null) {
             _activeButton.Foreground = new SolidColorBrush(Color.FromRgb(169, 177, 187)); // #A9B1BB
+        }
+
         setSelectedDateButton(button);
     }
 
@@ -160,28 +169,32 @@ public partial class StockWidgetWindow : Window, INotifyPropertyChanged {
         if (Topmost) {
             Topmost = false;
             SendToBack();
-        }
-        else {
+        } else {
             Topmost = true;
         }
     }
 
     private static bool IsOnInteractiveElement(DependencyObject? d) {
-        while (d != null) d = VisualTreeHelper.GetParent(d);
+        while (d != null) {
+            d = VisualTreeHelper.GetParent(d);
+        }
+
         return false;
     }
 
-
     private async Task RefreshFromYahooAsync() {
-        if (_isFetching) return;
+        if (_isFetching) {
+            return;
+        }
+
         _isFetching = true;
 
         try {
             var ci = await _yahoo.GetChartInfoAsync(Symbol, SelectedTimeRange, SelectedTimeInterval);
 
-            if (ci.DateList == null || ci.DateList.Count == 0 ||
-                ci.CloseList == null || ci.CloseList.Count == 0)
+            if (ci.DateList.Count == 0 || ci.CloseList.Count == 0) {
                 return;
+            }
 
             var startTime = DateTime.Now;
             var points = ci.CloseList
@@ -194,21 +207,19 @@ public partial class StockWidgetWindow : Window, INotifyPropertyChanged {
             var first = points.First().Y;
             var last = points.Last().Y;
 
-                await Dispatcher.InvokeAsync(() => {
-                    ChartPoints = points;
-                    PrevPrice = first;
-                    Price = last;
-                    RangeLabel = $"{SelectedTimeRange.ToLocalizedString()} • {SelectedTimeInterval.ToLocalizedString()}";
-                    UpdatedDisplay = $"Updated: {DateTime.Now:hh:mm tt}";
-                });
-            }
-            catch (Exception ex) {
-                Debug.WriteLine($"[DEBUG] Yahoo fetch error: {ex.Message}");
-            }
-            finally {
-                _isFetching = false;
-            }
+            await Dispatcher.InvokeAsync(() => {
+                ChartPoints = points;
+                PrevPrice = first;
+                Price = last;
+                RangeLabel = $"{SelectedTimeRange.ToLocalizedString()} • {SelectedTimeInterval.ToLocalizedString()}";
+                UpdatedDisplay = $"Updated: {DateTime.Now:hh:mm tt}";
+            });
+        } catch (Exception ex) {
+            Debug.WriteLine($"[DEBUG] Yahoo fetch error: {ex.Message}");
+        } finally {
+            _isFetching = false;
         }
+    }
 
     private void OnChanged(string name) {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
@@ -235,8 +246,13 @@ public partial class StockWidgetWindow : Window, INotifyPropertyChanged {
     public event Action<string>? HideTickerRequested;
 
     private void AddTicker_Click(object sender, RoutedEventArgs e) {
-        if (Topmost) Topmost = false;
-        if (Application.Current is App app) app.ShowMainWindow();
+        if (Topmost) {
+            Topmost = false;
+        }
+
+        if (Application.Current is App app) {
+            app.ShowMainWindow();
+        }
     }
 
     private void RemoveTicker_Click(object sender, RoutedEventArgs e) {
@@ -252,7 +268,9 @@ public partial class StockWidgetWindow : Window, INotifyPropertyChanged {
     }
 
     private void PinMenuItem_Click(object sender, RoutedEventArgs e) {
-        if (!Topmost) SendToBack();
+        if (!Topmost) {
+            SendToBack();
+        }
     }
 
     private void CloseWidget_Click(object sender, RoutedEventArgs e) {

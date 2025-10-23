@@ -1,9 +1,6 @@
-﻿
-using System.ComponentModel;
-using System.Data;
+﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
-using System.IO;
 using System.Windows;
 using System.Windows.Markup;
 using WebViewWidget.Properties;
@@ -19,7 +16,7 @@ public partial class App : Application {
 
     protected override void OnStartup(StartupEventArgs e) {
         base.OnStartup(e);
-        var settings = SettingsService.Instance;
+        var settings = SettingsService.SettingsServ;
 
 
         // Set language
@@ -29,31 +26,22 @@ public partial class App : Application {
         Thread.CurrentThread.CurrentCulture = culture; // dates/numbers
         Thread.CurrentThread.CurrentUICulture = culture; // RESX lookup
 
-        FrameworkElement.LanguageProperty.OverrideMetadata(
-            typeof(FrameworkElement),
+        FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement),
             new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(culture.IetfLanguageTag)));
 
 
         // 1) Build tray icon FIRST
-        _tray = new NotifyIcon
-        {
+        _tray = new NotifyIcon {
             Text = Strings.Tray_Header,
             Icon = LoadIconFromResource("Assets/favicon.ico"),
             Visible = true
         };
-        _tray.DoubleClick += (_, __) => ShowMainWindow();
+        _tray.DoubleClick += (_, _) => ShowMainWindow();
 
         var menu = new ContextMenuStrip();
 
-        menu.Items.Add(Strings.Menu_OpenDashboard, Tools.LoadEmbeddedImage("speedometer.png"), (_, __) => ShowMainWindow());
-
-        // optional: quick submenu to open ticker windows on demand
-        var symbols = (settings.PortfolioSymbols?.Select(q => q.Symbol)
-                       ?? Enumerable.Empty<string>())
-                      .Where(s => !string.IsNullOrWhiteSpace(s))
-                      .Distinct(StringComparer.OrdinalIgnoreCase)
-                      .ToList();
-
+        menu.Items.Add(Strings.Menu_OpenDashboard, Tools.LoadEmbeddedImage("speedometer.png"),
+            (_, _) => ShowMainWindow());
         var showService = StockWindowService.Instance;
         var route =
             e.Args.FirstOrDefault(a => a.StartsWith("--route=", StringComparison.OrdinalIgnoreCase))?[
@@ -61,14 +49,15 @@ public partial class App : Application {
         if (route.Equals("settings", StringComparison.OrdinalIgnoreCase)) {
             Debug.WriteLine("Recognized settings route");
             ShowMainWindow(DashboardPageIndex.Settings);
-        }
-        else {
+        } else {
             ShowMainWindow();
         }
 
         showService.ShowAllStockWindows();
-        menu.Items.Add(Strings.Menu_ShowAllWidgets, Tools.LoadEmbeddedImage("widgets.png"), (_, __) => showService.ShowAllStockWindows());
-        menu.Items.Add(Strings.Menu_HideAllWidgets, Tools.LoadEmbeddedImage("hidden.png"), (_, __) => showService.HideAllStockWindows()); 
+        menu.Items.Add(Strings.Menu_ShowAllWidgets, Tools.LoadEmbeddedImage("widgets.png"),
+            (_, _) => showService.ShowAllStockWindows());
+        menu.Items.Add(Strings.Menu_HideAllWidgets, Tools.LoadEmbeddedImage("hidden.png"),
+            (_, _) => showService.HideAllStockWindows());
         menu.Items.Add(Strings.Menu_Exits, Tools.LoadEmbeddedImage("delete.png"), (_, __) => ExitApp());
         _tray.ContextMenuStrip = menu;
     }
@@ -83,14 +72,14 @@ public partial class App : Application {
         if (_main == null) {
             _main = new DashboardWindow(index);
             _main.Closing += Main_Closing; // safe to add here as well
-        }
-        else {
+        } else {
             _main.SelectTab(index);
         }
 
         _main.Show();
-        if (_main.WindowState == WindowState.Minimized)
+        if (_main.WindowState == WindowState.Minimized) {
             _main.WindowState = WindowState.Normal;
+        }
 
         // to the top
         _main.Activate();
@@ -108,7 +97,10 @@ public partial class App : Application {
     }
 
     private void Main_Closing(object? sender, CancelEventArgs e) {
-        if (_reallyExit) return;
+        if (_reallyExit) {
+            return;
+        }
+
         e.Cancel = true;
         _main!.Hide();
         _tray?.ShowBalloonTip(1500, Strings.Tray_Header,

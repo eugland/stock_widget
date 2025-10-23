@@ -15,55 +15,44 @@ public enum DashboardPageIndex {
     Settings = 1
 }
 
-public partial class DashboardWindow : Window, INotifyPropertyChanged {
-    private string _footerStatus = Strings.Footer_Ready;
-
+public partial class DashboardWindow {
     public DashboardWindow(DashboardPageIndex index = DashboardPageIndex.Portfolio) {
         InitializeComponent();
         DataContext = this;
 
-        var items = new List<NavItem>
-        {
-            new(Strings.Nav_Portfolio, "\uE7C3", () => ContentFrame.Navigate((new PortfolioPage())) ), // pie glyph
-            new(Strings.Nav_Settings,  "\uE713", () => ContentFrame.Navigate((new SettingsPage())) ),  // gear
+        var items = new List<NavItem> {
+            new(Strings.Nav_Portfolio, "\uE7C3", () => ContentFrame.Navigate(new PortfolioPage())),
+            new(Strings.Nav_Settings, "\uE713", () => ContentFrame.Navigate(new SettingsPage()))
         };
         NavList.ItemsSource = items;
         SelectTab(index);
         ToastService.Register(this);
     }
 
-    public string FooterStatus {
-        get => _footerStatus;
-        set {
-            _footerStatus = value;
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FooterStatus)));
-        }
-    }
-
-    public event PropertyChangedEventHandler? PropertyChanged;
-
     public void SelectTab(DashboardPageIndex index) {
         NavList.SelectedIndex = (int)index;
     }
-
 
     public void navigate_setting() {
         ContentFrame.Navigate(new SettingsPage());
     }
 
     private void NavList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-        if (NavList.SelectedItem is NavItem item) item.Action?.Invoke();
+        if (NavList.SelectedItem is NavItem item) {
+            item.Action.Invoke();
+        }
     }
 
     protected override void OnClosing(CancelEventArgs e) {
-        // Prevent closing; just hide
         e.Cancel = true;
         Hide();
     }
 
     public void ShowToast(string message, int ms = 2500) {
         Debug.WriteLine($"[DashBoard] Showing toast: \"{message}\" (Duration={ms}ms)");
-        if (string.IsNullOrWhiteSpace(message)) return;
+        if (string.IsNullOrWhiteSpace(message)) {
+            return;
+        }
 
         void CreateAndAnimate() {
             var card = new Border {
@@ -99,7 +88,7 @@ public partial class DashboardWindow : Window, INotifyPropertyChanged {
             var slideOut = new DoubleAnimation(0, 12, TimeSpan.FromMilliseconds(180))
                 { BeginTime = TimeSpan.FromMilliseconds(ms), EasingFunction = new QuadraticEase() };
 
-            fadeOut.Completed += (_, __) => ToastPanel.Children.Remove(card);
+            fadeOut.Completed += (_, _) => ToastPanel.Children.Remove(card);
 
             card.BeginAnimation(OpacityProperty, fadeIn, HandoffBehavior.Compose);
             (card.RenderTransform as TranslateTransform)!.BeginAnimation(TranslateTransform.YProperty, slideIn,
@@ -111,8 +100,11 @@ public partial class DashboardWindow : Window, INotifyPropertyChanged {
         }
 
         // Ensure we’re on the UI thread
-        if (!Dispatcher.CheckAccess()) Dispatcher.Invoke(CreateAndAnimate);
-        else CreateAndAnimate();
+        if (!Dispatcher.CheckAccess()) {
+            Dispatcher.Invoke(CreateAndAnimate);
+        } else {
+            CreateAndAnimate();
+        }
     }
 
     public record NavItem(string Title, string Icon, Action Action);

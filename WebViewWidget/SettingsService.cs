@@ -20,9 +20,8 @@ public sealed class PortfolioChangedEventArgs(PortfolioChangeType kind, string s
 }
 
 public sealed class SettingsService : INotifyPropertyChanged {
-    private static readonly string[] languageCandidates = ["en", "zh", "ja", "ko", "es"];
-    private static readonly Lazy<SettingsService> _instance = new(() => new SettingsService());
-
+    private static readonly string[] LanguageCandidates = ["en", "zh", "ja", "ko", "es"];
+    private static readonly Lazy<SettingsService> SettingServLazy = new(() => new SettingsService());
     private readonly string _filePath;
     private readonly Dictionary<string, object> _settings = new(StringComparer.OrdinalIgnoreCase);
 
@@ -30,11 +29,10 @@ public sealed class SettingsService : INotifyPropertyChanged {
         var appDataPath = Environment.GetFolderPath(Environment.SpecialFolder.ApplicationData);
         var appFolderPath = Path.Combine(appDataPath, "WebViewWidget");
         _filePath = Path.Combine(appFolderPath, "settings.json");
-
         LoadSettings();
     }
 
-    public static SettingsService Instance => _instance.Value;
+    public static SettingsService SettingsServ => SettingServLazy.Value;
 
     public List<AutoCompleteResult> PortfolioSymbols {
         get => _settings.TryGetValue(nameof(PortfolioSymbols), out var value) && value is List<AutoCompleteResult> list
@@ -50,11 +48,15 @@ public sealed class SettingsService : INotifyPropertyChanged {
     public string Language {
         get {
             if (_settings.TryGetValue(nameof(Language), out var value) && value is string lang &&
-                !string.IsNullOrWhiteSpace(lang)) return lang;
+                !string.IsNullOrWhiteSpace(lang)) {
+                return lang;
+            }
+
             var systemLang = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
             Debug.WriteLine($"Got System Lang {systemLang}");
-            if (!languageCandidates.Contains(systemLang))
+            if (!LanguageCandidates.Contains(systemLang)) {
                 systemLang = "en";
+            }
 
             _settings[nameof(Language)] = systemLang;
             SaveSettings();
@@ -62,7 +64,10 @@ public sealed class SettingsService : INotifyPropertyChanged {
             return systemLang;
         }
         set {
-            if (Language == value) return;
+            if (Language == value) {
+                return;
+            }
+
             _settings[nameof(Language)] = value;
             SaveSettings();
             RestartApplication("settings");
@@ -78,25 +83,32 @@ public sealed class SettingsService : INotifyPropertyChanged {
 
     private void LoadSettings() {
         try {
-            if (!File.Exists(_filePath))
+            if (!File.Exists(_filePath)) {
                 return;
+            }
 
             var json = File.ReadAllText(_filePath);
             var dict = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(json);
 
-            if (dict == null) return;
+            if (dict == null) {
+                return;
+            }
 
-            foreach (var kvp in dict)
-                if (kvp.Key == nameof(PortfolioSymbols))
+            foreach (var kvp in dict) {
+                if (kvp.Key == nameof(PortfolioSymbols)) {
                     try {
                         var portfolio = kvp.Value.Deserialize<List<AutoCompleteResult>>();
-                        if (portfolio != null)
+                        if (portfolio != null) {
                             _settings[nameof(PortfolioSymbols)] = portfolio;
+                        }
+                    } catch {
+                        Debug.WriteLine("Failed to load Portfolio Symbols");
                     }
-                    catch { }
-                else if (kvp.Value.ValueKind == JsonValueKind.String) _settings[kvp.Key] = kvp.Value.GetString()!;
-        }
-        catch (Exception ex) {
+                } else if (kvp.Value.ValueKind == JsonValueKind.String) {
+                    _settings[kvp.Key] = kvp.Value.GetString()!;
+                }
+            }
+        } catch (Exception ex) {
             Debug.WriteLine($"Error loading settings: {ex.Message}");
             _settings.Clear();
         }
@@ -109,23 +121,27 @@ public sealed class SettingsService : INotifyPropertyChanged {
                 WriteIndented = true
             });
             File.WriteAllText(_filePath, json);
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             Debug.WriteLine($"Error saving settings: {ex.Message}");
         }
     }
 
     public void AddStock(AutoCompleteResult symbol) {
         var list = PortfolioSymbols;
-        if (list.Any(s => s.Symbol.Equals(symbol.Symbol, StringComparison.OrdinalIgnoreCase)))
+        if (list.Any(s => s.Symbol.Equals(symbol.Symbol, StringComparison.OrdinalIgnoreCase))) {
             return;
+        }
+
         list.Add(symbol);
         PortfolioSymbols = list;
         PortfolioChanged?.Invoke(this, new PortfolioChangedEventArgs(PortfolioChangeType.Added, symbol.Symbol));
     }
 
     public void RemoveStock(string symbol) {
-        if (string.IsNullOrWhiteSpace(symbol)) return;
+        if (string.IsNullOrWhiteSpace(symbol)) {
+            return;
+        }
+
         var list = PortfolioSymbols;
         list.RemoveAll(s => string.Equals(s.Symbol, symbol, StringComparison.OrdinalIgnoreCase));
         PortfolioSymbols = list;
@@ -139,14 +155,17 @@ public sealed class SettingsService : INotifyPropertyChanged {
     }
 
     public T GetSetting<T>(string key, T defaultValue = default!) {
-        if (_settings.TryGetValue(key, out var value) && value is JsonElement je)
+        if (_settings.TryGetValue(key, out var value) && value is JsonElement je) {
             try {
                 return JsonSerializer.Deserialize<T>(je.GetRawText()) ?? defaultValue;
+            } catch {
+                Debug.WriteLine($"Failed to get setting {key}");
             }
-            catch { }
+        }
 
-        if (_settings.TryGetValue(key, out var obj) && obj is T typed)
+        if (_settings.TryGetValue(key, out var obj) && obj is T typed) {
             return typed;
+        }
 
         return defaultValue;
     }

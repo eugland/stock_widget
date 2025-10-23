@@ -4,7 +4,7 @@ using Application = System.Windows.Application;
 namespace WebViewWidget;
 
 public class StockWindowService {
-    private static readonly SettingsService settings = SettingsService.Instance;
+    private static readonly SettingsService settings = SettingsService.SettingsServ;
     private readonly Dictionary<string, StockWidgetWindow> _stockWindows;
 
     private StockWindowService() {
@@ -33,23 +33,26 @@ public class StockWindowService {
     }
 
     public void ShowAllStockWindows() {
-        var symbols = (settings.PortfolioSymbols?.Select(q => q.Symbol)
-                       ?? [])
+        var symbols = settings.PortfolioSymbols.Select(q => q.Symbol)
             .Where(s => !string.IsNullOrWhiteSpace(s))
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToList();
-        foreach (var symbol in symbols) ShowStockWindow(symbol);
+        foreach (var symbol in symbols) {
+            ShowStockWindow(symbol);
+        }
     }
 
     public void HideAllStockWindows() {
-        foreach (var window in _stockWindows.Values) window.Hide();
+        foreach (var window in _stockWindows.Values) {
+            window.Hide();
+        }
     }
 
     private void OnPortfolioChanged(object? sender, PortfolioChangedEventArgs e) {
         Application.Current.Dispatcher.Invoke(() => {
             switch (e.Kind) {
                 case PortfolioChangeType.Added:
-                    if (!_stockWindows.TryGetValue(e.Symbol, out var win) || win is null) {
+                    if (!_stockWindows.TryGetValue(e.Symbol, out var win)) {
                         win = ShowStockWindow(e.Symbol);
                         _stockWindows[e.Symbol] = win;
                     }
@@ -57,7 +60,7 @@ public class StockWindowService {
                     win.Show();
                     break;
                 case PortfolioChangeType.Removed:
-                    if (_stockWindows.TryGetValue(e.Symbol, out var toClose) && toClose is not null) {
+                    if (_stockWindows.TryGetValue(e.Symbol, out var toClose)) {
                         toClose.Close();
                         _stockWindows.Remove(e.Symbol);
                     }

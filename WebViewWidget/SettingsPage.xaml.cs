@@ -5,7 +5,7 @@ using System.Windows.Controls;
 namespace WebViewWidget;
 
 public partial class SettingsPage {
-    private static readonly SettingsService settings = SettingsService.Instance;
+    private static readonly SettingsService settings = SettingsService.SettingsServ;
 
     public SettingsPage() {
         InitializeComponent();
@@ -16,8 +16,9 @@ public partial class SettingsPage {
     private void LanguageCombo_SelectionChanged(object sender, SelectionChangedEventArgs e) {
         var sel = LanguageCombo.SelectedValue as string;
         if (!string.IsNullOrWhiteSpace(sel) &&
-            !string.Equals(sel, settings.Language, StringComparison.OrdinalIgnoreCase))
+            !string.Equals(sel, settings.Language, StringComparison.OrdinalIgnoreCase)) {
             settings.Language = sel;
+        }
     }
 
     private void OpenMicrosoftStore_Click(object sender, RoutedEventArgs e) {
