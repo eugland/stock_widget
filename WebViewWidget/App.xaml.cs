@@ -40,10 +40,7 @@ public partial class App : Application {
 
         var menu = new ContextMenuStrip();
         menu.Items.Add("📊 Open Dashboard", null, (_, __) => ShowMainWindow());
-
-        // optional: quick submenu to open ticker windows on demand
-        var symbols = (settings.PortfolioSymbols?.Select(q => q.Symbol)
-                       ?? [])
+        var symbols = (settings.PortfolioSymbols?.Select(q => q.Symbol) ?? [])
             .Where(s => !string.IsNullOrWhiteSpace(s))
             .Distinct(StringComparer.OrdinalIgnoreCase)
             .ToList();
