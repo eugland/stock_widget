@@ -118,138 +118,138 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="R" xml:space="preserve">
-    <value>Stock Widget</value>
+    <value>股票小组件</value>
   </data>
   <data name="Settings.Language" xml:space="preserve">
-    <value>Language</value>
+    <value>语言</value>
   </data>
   <data name="Settings.Apply" xml:space="preserve">
-    <value>Apply</value>
+    <value>应用</value>
   </data>
   <data name="Premium.Header" xml:space="preserve">
-    <value>Premium Features</value>
+    <value>高级功能</value>
   </data>
   <data name="Portfolio.my_stock_portfolio" xml:space="preserve">
-    <value>My Stock Portfolio</value>
+    <value>我的股票投资组合</value>
   </data>
   <data name="Menu.ShowAllWidgets" xml:space="preserve">
-    <value>Show All Widgets</value>
+    <value>显示所有小组件</value>
   </data>
   <data name="Menu.HideAllWidgets" xml:space="preserve">
-    <value>Hide All Widgets</value>
+    <value>隐藏所有小组件</value>
   </data>
   <data name="Menu.Exits" xml:space="preserve">
-    <value>Exit</value>
+    <value>退出</value>
   </data>
   <data name="Tray.Header" xml:space="preserve">
-    <value>Stock Widget</value>
+    <value>股票小组件</value>
   </data>
   <data name="Tray.ReopenHint" xml:space="preserve">
-    <value>Still running here. Double-click to reopen.</value>
+    <value>仍在后台运行，双击以重新打开。</value>
   </data>
   <data name="Footer.Ready" xml:space="preserve">
-    <value>Ready</value>
+    <value>就绪</value>
   </data>
   <data name="Nav.Portfolio" xml:space="preserve">
-    <value>Portfolio</value>
+    <value>投资组合</value>
   </data>
   <data name="Nav.Settings" xml:space="preserve">
-    <value>Settings</value>
+    <value>设置</value>
   </data>
   <data name="Toast.AddedStock" xml:space="preserve">
-    <value>{0} added to your Desktop.</value>
+    <value>{0} 已添加到桌面。</value>
   </data>
   <data name="Toast.AlreadyInPortfolio" xml:space="preserve">
-    <value>{0} is already in your portfolio.</value>
+    <value>{0} 已存在于您的投资组合中。</value>
   </data>
   <data name="Toast.StockRemoved" xml:space="preserve">
-    <value>{0} Removed.</value>
+    <value>{0} 已移除。</value>
   </data>
   <data name="TimeRange__1Day" xml:space="preserve">
-    <value>1 Day</value>
+    <value>1天</value>
   </data>
   <data name="TimeRange__5Days" xml:space="preserve">
-    <value>5 Days</value>
+    <value>5天</value>
   </data>
   <data name="TimeRange__1Month" xml:space="preserve">
-    <value>1 Month</value>
+    <value>1个月</value>
   </data>
   <data name="TimeRange__3Months" xml:space="preserve">
-    <value>3 Months</value>
+    <value>3个月</value>
   </data>
   <data name="TimeRange__6Months" xml:space="preserve">
-    <value>6 Months</value>
+    <value>6个月</value>
   </data>
   <data name="TimeRange__1Year" xml:space="preserve">
-    <value>1 Year</value>
+    <value>1年</value>
   </data>
   <data name="TimeRange__2Years" xml:space="preserve">
-    <value>2 Years</value>
+    <value>2年</value>
   </data>
   <data name="TimeRange__5Years" xml:space="preserve">
-    <value>5 Years</value>
+    <value>5年</value>
   </data>
   <data name="TimeRange__10Years" xml:space="preserve">
-    <value>10 Years</value>
+    <value>10年</value>
   </data>
   <data name="TimeRange__YearToDate" xml:space="preserve">
-    <value>Year to Date</value>
+    <value>年初至今</value>
   </data>
   <data name="TimeRange__Max" xml:space="preserve">
-    <value>Max</value>
+    <value>最大</value>
   </data>
   <data name="TimeInterval__1Minute" xml:space="preserve">
-    <value>1 Minute</value>
+    <value>1分钟</value>
   </data>
   <data name="TimeInterval__2Minutes" xml:space="preserve">
-    <value>2 Minutes</value>
+    <value>2分钟</value>
   </data>
   <data name="TimeInterval__5Minutes" xml:space="preserve">
-    <value>5 Minutes</value>
+    <value>5分钟</value>
   </data>
   <data name="TimeInterval__15Minutes" xml:space="preserve">
-    <value>15 Minutes</value>
+    <value>15分钟</value>
   </data>
   <data name="TimeInterval__30Minutes" xml:space="preserve">
-    <value>30 Minutes</value>
+    <value>30分钟</value>
   </data>
   <data name="TimeInterval__60Minutes" xml:space="preserve">
-    <value>60 Minutes</value>
+    <value>60分钟</value>
   </data>
   <data name="TimeInterval__90Minutes" xml:space="preserve">
-    <value>90 Minutes</value>
+    <value>90分钟</value>
   </data>
   <data name="TimeInterval__1Hour" xml:space="preserve">
-    <value>1 Hour</value>
+    <value>1小时</value>
   </data>
   <data name="TimeInterval__1Day" xml:space="preserve">
-    <value>1 Day</value>
+    <value>1天</value>
   </data>
   <data name="TimeInterval__5Days" xml:space="preserve">
-    <value>5 Days</value>
+    <value>5天</value>
   </data>
   <data name="TimeInterval__1Week" xml:space="preserve">
-    <value>1 Week</value>
+    <value>1周</value>
   </data>
   <data name="TimeInterval__1Month" xml:space="preserve">
-    <value>1 Month</value>
+    <value>1个月</value>
   </data>
   <data name="TimeInterval__3Months" xml:space="preserve">
-    <value>3 Months</value>
+    <value>3个月</value>
   </data>
   <data name="Menu.OpenDashboard" xml:space="preserve">
-    <value>Open Dashboard</value>
+    <value>打开仪表盘</value>
   </data>
   <data name="Portfolio.add_stock_suggestion" xml:space="preserve">
-    <value>Add stocks to your portfolio to track their performance.</value>
+    <value>将股票添加到您的投资组合中，以追踪它们的表现。</value>
   </data>
   <data name="Portfolio.search_hint" xml:space="preserve">
-    <value>Search for a company or symbol...</value>
+    <value>搜索公司或股票代码…</value>
   </data>
   <data name="Settings.language_header" xml:space="preserve">
-    <value>Language</value>
+    <value>语言</value>
   </data>
   <data name="Settings.language_instruction" xml:space="preserve">
-    <value>Choose the display language for the app.</value>
+    <value>选择应用程序的显示语言。</value>
   </data>
 </root>

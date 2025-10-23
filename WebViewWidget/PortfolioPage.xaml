@@ -77,7 +77,7 @@
         <StackPanel Margin="24">
             <!-- The header content is now the first item in the scrolling stack -->
             <TextBlock Text="{x:Static res:Strings.Portfolio_my_stock_portfolio}" FontSize="28" FontWeight="Bold" Foreground="White"/>
-            <TextBlock Text="Add stocks to your portfolio to track their performance." FontSize="16" Foreground="#9CA3AF" Margin="0,4,0,0"/>
+            <TextBlock Text="{x:Static res:Strings.Portfolio_add_stock_suggestion}" FontSize="16" Foreground="#9CA3AF" Margin="0,4,0,0"/>
 
             <Grid Margin="0,16,0,0">
                 <TextBox x:Name="StockSearchTextBox"
@@ -93,7 +93,7 @@
                 <TextBlock IsHitTestVisible="False" Text="&#xE721;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="White"/>
 
                 <TextBlock IsHitTestVisible="False" 
-                           Text="Search for a company or symbol..." 
+                           Text="{x:Static res:Strings.Portfolio_search_hint}" 
                            VerticalAlignment="Center" 
                            HorizontalAlignment="Left" 
                            Margin="38,0,0,0" 

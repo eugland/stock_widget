@@ -27,7 +27,6 @@ public partial class DashboardWindow : Window, INotifyPropertyChanged
 {
     public event PropertyChangedEventHandler? PropertyChanged;
 
-    // ... (FooterStatus property and backing field remain the same) ...
     public string FooterStatus
     {
         get => _footerStatus;
@@ -42,7 +41,6 @@ public partial class DashboardWindow : Window, INotifyPropertyChanged
         InitializeComponent();
         DataContext = this;
 
-        // Build nav
         var items = new List<NavItem>
         {
             new(Strings.Nav_Portfolio, "\uE7C3", () => ContentFrame.Navigate((new PortfolioPage())) ), // pie glyph
@@ -51,7 +49,6 @@ public partial class DashboardWindow : Window, INotifyPropertyChanged
         NavList.ItemsSource = items;
         NavList.SelectedIndex = index;
         ToastService.Register(this);
-
     }
 
     public void navigate_setting()

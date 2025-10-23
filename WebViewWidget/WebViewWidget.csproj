@@ -12,6 +12,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\dashboard.png" />
+    <None Remove="Assets\delete.png" />
+    <None Remove="Assets\hidden.png" />
+    <None Remove="Assets\speedometer.png" />
+    <None Remove="Assets\widgets.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Assets\dashboard.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Assets\delete.png" />
+    <EmbeddedResource Include="Assets\hidden.png" />
+    <EmbeddedResource Include="Assets\speedometer.png" />
+    <EmbeddedResource Include="Assets\widgets.png" />
     <Resource Include="Assets\favicon.ico" />
   </ItemGroup>
 
@@ -43,9 +58,10 @@
 
   <ItemGroup>
     <EmbeddedResource Update="Properties\Strings.zh.resx">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <SubType>Designer</SubType>
       <LastGenOutput>Strings.zh.Designer.cs</LastGenOutput>
       <Generator>PublicResXFileCodeGenerator</Generator>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Update="Properties\Strings.resx">
       <Generator>PublicResXFileCodeGenerator</Generator>

@@ -2,9 +2,11 @@
 using System.Data;
 using System.Diagnostics;
 using System.Globalization;
+using System.IO;
 using System.Windows;
 using System.Windows.Markup;
 using WebViewWidget.Properties;
+using WebViewWidget.Utils;
 using Application = System.Windows.Application;
 
 namespace WebViewWidget;
@@ -44,14 +46,15 @@ public partial class App : Application
         // 1) Build tray icon FIRST
         _tray = new NotifyIcon
         {
-            Text = "Stock Widget",
+            Text = Strings.Tray_Header,
             Icon = LoadIconFromResource("Assets/favicon.ico"),
             Visible = true
         };
         _tray.DoubleClick += (_, __) => ShowMainWindow();
 
         var menu = new ContextMenuStrip();
-        menu.Items.Add("📊 Open Dashboard", null, (_, __) => ShowMainWindow());
+
+        menu.Items.Add(Strings.Menu_OpenDashboard, Tools.LoadEmbeddedImage("speedometer.png"), (_, __) => ShowMainWindow());
 
         // optional: quick submenu to open ticker windows on demand
         var symbols = (settings.PortfolioSymbols?.Select(q => q.Symbol)
@@ -70,9 +73,9 @@ public partial class App : Application
             ShowMainWindow(0);
         }
         showService.ShowAllStockWindows();
-        menu.Items.Add(Strings.Menu_ShowAllWidgets, null, (_, __) => showService.ShowAllStockWindows());
-        menu.Items.Add(Strings.Menu_HideAllWidgets, null, (_, __) => showService.HideAllStockWindows()); 
-        menu.Items.Add(Strings.Menu_Exits, null, (_, __) => ExitApp());
+        menu.Items.Add(Strings.Menu_ShowAllWidgets, Tools.LoadEmbeddedImage("widgets.png"), (_, __) => showService.ShowAllStockWindows());
+        menu.Items.Add(Strings.Menu_HideAllWidgets, Tools.LoadEmbeddedImage("hidden.png"), (_, __) => showService.HideAllStockWindows()); 
+        menu.Items.Add(Strings.Menu_Exits, Tools.LoadEmbeddedImage("delete.png"), (_, __) => ExitApp());
         _tray.ContextMenuStrip = menu;
     }
     

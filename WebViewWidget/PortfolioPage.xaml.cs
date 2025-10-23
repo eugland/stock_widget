@@ -16,6 +16,7 @@ using System.Threading.Tasks;
 using Brushes = System.Windows.Media.Brushes;
 using Brush = System.Windows.Media.Brush;
 using System.Diagnostics;
+using WebViewWidget.Properties;
 
 namespace WebViewWidget
 {
@@ -36,7 +37,7 @@ namespace WebViewWidget
         private async void LoadPortfolioFromSettings()
         {
             var savedSymbols = SettingsService.Instance.PortfolioSymbols;
-            System.Diagnostics.Debug.WriteLine($"Loading {savedSymbols.Count} symbols from settings.");
+            Debug.WriteLine($"Loading {savedSymbols.Count} symbols from settings.");
 
             foreach (var stockInfo in savedSymbols)
             {
@@ -111,12 +112,12 @@ namespace WebViewWidget
                     ColorRating = Brushes.Green
                 });
                 SettingsService.Instance.AddStock(stock);
-                System.Diagnostics.Debug.WriteLine($"Added {stock.Symbol} to portfolio and settings.");
-                ToastService.Show($"{stock.Symbol} added to your Desktop.");
+                Debug.WriteLine($"Added {stock.Symbol} to portfolio and settings.");
+                ToastService.Show(string.Format(Strings.Toast_AddedStock, stock.Symbol));
             }
             else
             {
-                ToastService.Show($"{stock.Symbol} is already in your portfolio.");
+                ToastService.Show(string.Format(Strings.Toast_AlreadyInPortfolio, stock.Symbol));
             }
         }
 
@@ -127,20 +128,11 @@ namespace WebViewWidget
                 Portfolio.Remove(stockToRemove);
                 SettingsService.Instance.RemoveStock(stockToRemove.Symbol);
 
-                ToastService.Show($"{stockToRemove.Symbol} Removed.");
-                System.Diagnostics.Debug.WriteLine($"Removed {stockToRemove.Symbol} from portfolio and settings.");
+                ToastService.Show(string.Format(Strings.Toast_StockRemoved, stockToRemove.Symbol));
+                Debug.WriteLine($"Removed {stockToRemove.Symbol} from portfolio and settings.");
             }
         }
 
-        private void EditButton_Click(object sender, RoutedEventArgs e)
-        {
-            if ((sender as FrameworkElement)?.DataContext is StockViewModel stockToConfigure)
-            {
-                var settingsWindow = new ChartSettingsWindow(stockToConfigure);
-                settingsWindow.Owner = Window.GetWindow(this);
-                settingsWindow.ShowDialog();
-            }
-        }
 
         #region Unchanged UI Event Handlers
         private void TimeFrame_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -149,7 +141,7 @@ namespace WebViewWidget
             {
                 if ((e.AddedItems[0] as ComboBoxItem)?.Content?.ToString() is string selectedTimeFrame)
                 {
-                    System.Diagnostics.Debug.WriteLine($"Timeframe for {stock.Symbol} changed to {selectedTimeFrame}");
+                    Debug.WriteLine($"Timeframe for {stock.Symbol} changed to {selectedTimeFrame}");
                 }
             }
         }
@@ -160,7 +152,7 @@ namespace WebViewWidget
             {
                 if ((e.AddedItems[0] as ComboBoxItem)?.Content?.ToString() is string selectedCurrency)
                 {
-                    System.Diagnostics.Debug.WriteLine($"Currency for {stock.Symbol} changed to {selectedCurrency}");
+                    Debug.WriteLine($"Currency for {stock.Symbol} changed to {selectedCurrency}");
                 }
             }
         }
@@ -183,9 +175,6 @@ namespace WebViewWidget
         public double Price { get; set; }
         public double Change { get; set; }
         public string Currency { get; set; } = string.Empty;
-        public string PriceDisplay => Price.ToString("C", System.Globalization.CultureInfo.GetCultureInfo("en-US"));
-        public string ChangeDisplay => $"{(Change >= 0 ? "+" : "")}{Change:F2} ({(Change / Price):P2})";
-        public Brush ChangeColor => Change >= 0 ? Brushes.LightGreen : Brushes.PaleVioletRed;
         public Brush ColorRating
         {
             get => _colorRating;

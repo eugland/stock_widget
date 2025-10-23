@@ -13,6 +13,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Interop;
 using System.Windows.Media;
+using WebViewWidget.Utils;
 using static System.Windows.Forms.VisualStyles.VisualStyleElement.Rebar;
 using Brush = System.Windows.Media.Brush;
 using Brushes = System.Windows.Media.Brushes;
@@ -216,7 +217,7 @@ namespace WebViewWidget {
                     ChartPoints = points;
                     PrevPrice = first;
                     Price = last;
-                    RangeLabel = $"{SelectedTimeRange.ToString().Replace("_", "")} • {SelectedTimeInterval.ToString().Replace("_", "")}";
+                    RangeLabel = $"{SelectedTimeRange.ToLocalizedString()} • {SelectedTimeInterval.ToLocalizedString()}";
                     UpdatedDisplay = $"Updated: {DateTime.Now:hh:mm tt}";
                 });
             }
