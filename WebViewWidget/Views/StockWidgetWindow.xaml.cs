@@ -143,8 +143,6 @@ public partial class StockWidgetWindow : INotifyPropertyChanged {
         if (sender is not Button { Tag: string tag } button) {
             return;
         }
-
-
         var parts = tag.Split(',');
         if (parts.Length != 2) {
             return;
@@ -178,7 +176,6 @@ public partial class StockWidgetWindow : INotifyPropertyChanged {
         while (d != null) {
             d = VisualTreeHelper.GetParent(d);
         }
-
         return false;
     }
 

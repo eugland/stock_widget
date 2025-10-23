@@ -18,19 +18,13 @@ public partial class App : Application {
         base.OnStartup(e);
         var settings = SettingsService.SettingsServ;
 
-
-        // Set language
         var lang = settings.Language;
         var culture = new CultureInfo(lang);
-
-        Thread.CurrentThread.CurrentCulture = culture; // dates/numbers
-        Thread.CurrentThread.CurrentUICulture = culture; // RESX lookup
-
+        Thread.CurrentThread.CurrentCulture = culture;
+        Thread.CurrentThread.CurrentUICulture = culture;
         FrameworkElement.LanguageProperty.OverrideMetadata(typeof(FrameworkElement),
             new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(culture.IetfLanguageTag)));
 
-
-        // 1) Build tray icon FIRST
         _tray = new NotifyIcon {
             Text = Strings.Tray_Header,
             Icon = LoadIconFromResource("Assets/favicon.ico"),
@@ -39,7 +33,6 @@ public partial class App : Application {
         _tray.DoubleClick += (_, _) => ShowMainWindow();
 
         var menu = new ContextMenuStrip();
-
         menu.Items.Add(Strings.Menu_OpenDashboard, Tools.LoadEmbeddedImage("speedometer.png"),
             (_, _) => ShowMainWindow());
         var showService = StockWindowService.Instance;
@@ -52,7 +45,6 @@ public partial class App : Application {
         } else {
             ShowMainWindow();
         }
-
         showService.ShowAllStockWindows();
         menu.Items.Add(Strings.Menu_ShowAllWidgets, Tools.LoadEmbeddedImage("widgets.png"),
             (_, _) => showService.ShowAllStockWindows());
@@ -80,8 +72,6 @@ public partial class App : Application {
         if (_main.WindowState == WindowState.Minimized) {
             _main.WindowState = WindowState.Normal;
         }
-
-        // to the top
         _main.Activate();
         _main.Topmost = true;
         _main.Topmost = false;
@@ -100,7 +90,6 @@ public partial class App : Application {
         if (_reallyExit) {
             return;
         }
-
         e.Cancel = true;
         _main!.Hide();
         _tray?.ShowBalloonTip(1500, Strings.Tray_Header,

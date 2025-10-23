@@ -1,80 +1,112 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <OutputType>WinExe</OutputType>
-    <TargetFramework>net9.0-windows</TargetFramework>
-    <Nullable>enable</Nullable>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <UseWindowsForms>true</UseWindowsForms>
-    <UseWPF>true</UseWPF>
-    <PackageIcon>favicon.ico</PackageIcon>
-    <ApplicationIcon>Assets\favicon.ico</ApplicationIcon>
-  </PropertyGroup>
+    <PropertyGroup>
+        <OutputType>WinExe</OutputType>
+        <TargetFramework>net9.0-windows</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <UseWindowsForms>true</UseWindowsForms>
+        <UseWPF>true</UseWPF>
+        <PackageIcon>favicon.ico</PackageIcon>
+        <ApplicationIcon>Assets\favicon.ico</ApplicationIcon>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <None Remove="Assets\dashboard.png" />
-    <None Remove="Assets\delete.png" />
-    <None Remove="Assets\hidden.png" />
-    <None Remove="Assets\speedometer.png" />
-    <None Remove="Assets\widgets.png" />
-  </ItemGroup>
+    <ItemGroup>
+        <None Remove="Assets\dashboard.png"/>
+        <None Remove="Assets\delete.png"/>
+        <None Remove="Assets\hidden.png"/>
+        <None Remove="Assets\speedometer.png"/>
+        <None Remove="Assets\widgets.png"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Include="Assets\dashboard.png">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Assets\delete.png" />
-    <EmbeddedResource Include="Assets\hidden.png" />
-    <EmbeddedResource Include="Assets\speedometer.png" />
-    <EmbeddedResource Include="Assets\widgets.png" />
-    <Resource Include="Assets\favicon.ico" />
-  </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Include="Assets\dashboard.png">
+            <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+        </EmbeddedResource>
+        <EmbeddedResource Include="Assets\delete.png"/>
+        <EmbeddedResource Include="Assets\hidden.png"/>
+        <EmbeddedResource Include="Assets\speedometer.png"/>
+        <EmbeddedResource Include="Assets\widgets.png"/>
+        <Resource Include="Assets\favicon.ico"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3537.50"/>
+    <ItemGroup>
+        <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3537.50"/>
 
-  </ItemGroup>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Reference Include="System.Windows.Forms"/>
-  </ItemGroup>
+    <ItemGroup>
+        <Reference Include="System.Windows.Forms"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\OoplesFinance.YahooFinanceAPI\src\OoplesFinance.YahooFinanceAPI.csproj"/>
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\OoplesFinance.YahooFinanceAPI\src\OoplesFinance.YahooFinanceAPI.csproj"/>
+    </ItemGroup>
 
-  <ItemGroup>
-    <Compile Update="Properties\Strings.zh.Designer.cs">
-      <DependentUpon>Strings.zh.resx</DependentUpon>
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-    </Compile>
-    <Compile Update="Properties\Strings.Designer.cs">
-      <DesignTime>True</DesignTime>
-      <AutoGen>True</AutoGen>
-      <DependentUpon>Strings.resx</DependentUpon>
-    </Compile>
-  </ItemGroup>
+    <ItemGroup>
+        <Compile Update="Properties\Strings.zh.Designer.cs">
+            <DependentUpon>Strings.zh.resx</DependentUpon>
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+        </Compile>
+        <Compile Update="Properties\Strings.Designer.cs">
+            <DesignTime>True</DesignTime>
+            <AutoGen>True</AutoGen>
+            <DependentUpon>Strings.resx</DependentUpon>
+        </Compile>
+        <Compile Update="Views\DashboardWindow.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\PortfolioPage.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+        <Compile Update="Views\SettingsPage.xaml.cs">
+            <SubType>Code</SubType>
+        </Compile>
+    </ItemGroup>
 
-  <ItemGroup>
-    <EmbeddedResource Update="Properties\Strings.zh.resx">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      <SubType>Designer</SubType>
-      <LastGenOutput>Strings.zh.Designer.cs</LastGenOutput>
-      <Generator>PublicResXFileCodeGenerator</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Properties\Strings.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Strings.Designer.cs</LastGenOutput>
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </EmbeddedResource>
-  </ItemGroup>
+    <ItemGroup>
+        <EmbeddedResource Update="Properties\Strings.zh.resx">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <SubType>Designer</SubType>
+            <LastGenOutput>Strings.zh.Designer.cs</LastGenOutput>
+            <Generator>PublicResXFileCodeGenerator</Generator>
+        </EmbeddedResource>
+        <EmbeddedResource Update="Properties\Strings.resx">
+            <Generator>PublicResXFileCodeGenerator</Generator>
+            <LastGenOutput>Strings.Designer.cs</LastGenOutput>
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </EmbeddedResource>
+    </ItemGroup>
 
-  <ItemGroup>
-    <None Update="Assets\favicon.ico">
-      <Pack>True</Pack>
-      <PackagePath>\</PackagePath>
-    </None>
-  </ItemGroup>
+    <ItemGroup>
+        <None Update="Assets\favicon.ico">
+            <Pack>True</Pack>
+            <PackagePath>\</PackagePath>
+        </None>
+    </ItemGroup>
+
+    <ItemGroup>
+        <Page Update="Views\DashboardWindow.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Views\PortfolioPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Views\SettingsPage.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+        <Page Update="Views\StockWidgetWindow.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+            <SubType>Designer</SubType>
+        </Page>
+    </ItemGroup>
 
 </Project>

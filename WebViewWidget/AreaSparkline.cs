@@ -49,11 +49,15 @@ public sealed class AreaSparkline : FrameworkElement {
 
     protected override void OnRender(DrawingContext dc) {
         base.OnRender(dc);
-        if (Points == null || Points.Count < 2) return;
+        if (Points == null || Points.Count < 2) {
+            return;
+        }
 
         var w = ActualWidth;
         var h = ActualHeight;
-        if (w <= 0 || h <= 0) return;
+        if (w <= 0 || h <= 0) {
+            return;
+        }
 
         var minX = Points[0].X;
         var maxX = Points[^1].X;

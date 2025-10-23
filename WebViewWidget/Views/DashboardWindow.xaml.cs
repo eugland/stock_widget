@@ -19,7 +19,6 @@ public partial class DashboardWindow {
     public DashboardWindow(DashboardPageIndex index = DashboardPageIndex.Portfolio) {
         InitializeComponent();
         DataContext = this;
-
         var items = new List<NavItem> {
             new(Strings.Nav_Portfolio, "\uE7C3", () => ContentFrame.Navigate(new PortfolioPage())),
             new(Strings.Nav_Settings, "\uE713", () => ContentFrame.Navigate(new SettingsPage()))
@@ -72,10 +71,8 @@ public partial class DashboardWindow {
                     MaxWidth = 380
                 }
             };
-
             ToastPanel.Children.Add(card);
 
-            // --- IN animations ---
             var fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(160))
                 { EasingFunction = new QuadraticEase() };
 
@@ -99,7 +96,6 @@ public partial class DashboardWindow {
                 HandoffBehavior.Compose);
         }
 
-        // Ensure we’re on the UI thread
         if (!Dispatcher.CheckAccess()) {
             Dispatcher.Invoke(CreateAndAnimate);
         } else {

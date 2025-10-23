@@ -67,7 +67,7 @@ ij_properties_spaces_around_key_value_delimiter = false
 [*.proto]
 indent_size = 2
 tab_width = 2
-ij_continuation_indent_size = 4
+ij_continuation_indent_size = 2
 ij_protobuf_keep_blank_lines_in_code = 2
 ij_protobuf_keep_indents_on_empty_lines = false
 ij_protobuf_keep_line_breaks = true
@@ -141,10 +141,10 @@ ij_editorconfig_space_before_colon = false
 ij_editorconfig_space_before_comma = false
 ij_editorconfig_spaces_around_assignment_operators = true
 
-[{*.ant,*.appxmanifest,*.axml,*.cscfg,*.csdef,*.disco,*.dotsettings,*.filelayout,*.fxml,*.jhm,*.jnlp,*.jrxml,*.manifest,*.myapp,*.nuspec,*.rng,*.stylecop,*.svcmap,*.tld,*.wadcfgx,*.webref,*.wsdl,*.xml,*.xsd,*.xsl,*.xslt,*.xul,StyleCop.Cache}]
+[{*.xaml,*.ant,*.appxmanifest,*.axml,*.cscfg,*.csdef,*.disco,*.dotsettings,*.filelayout,*.fxml,*.jhm,*.jnlp,*.jrxml,*.manifest,*.myapp,*.nuspec,*.rng,*.stylecop,*.svcmap,*.tld,*.wadcfgx,*.webref,*.wsdl,*.xml,*.xsd,*.xsl,*.xslt,*.xul,StyleCop.Cache}]
 indent_size = 2
 tab_width = 2
-ij_continuation_indent_size = 4
+ij_continuation_indent_size = 2
 ij_xml_align_attributes = true
 ij_xml_align_text = false
 ij_xml_attribute_wrap = normal

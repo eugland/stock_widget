@@ -76,7 +76,6 @@ public partial class PortfolioPage {
             ToastService.Show(string.Format(Strings.Toast_AlreadyInPortfolio, stock.Symbol));
             return;
         }
-
         var random = new Random();
         Portfolio.Add(new StockViewModel {
             Symbol = stock.Symbol,

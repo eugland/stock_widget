@@ -20,7 +20,6 @@ public class StockWindowService {
             existingWindow.Activate();
             return existingWindow;
         }
-
         var newWindow = new StockWidgetWindow(symbol);
         newWindow.Closing += (s, e) => {
             e.Cancel = true;
@@ -56,7 +55,6 @@ public class StockWindowService {
                         win = ShowStockWindow(e.Symbol);
                         _stockWindows[e.Symbol] = win;
                     }
-
                     win.Show();
                     break;
                 case PortfolioChangeType.Removed:
@@ -64,7 +62,6 @@ public class StockWindowService {
                         toClose.Close();
                         _stockWindows.Remove(e.Symbol);
                     }
-
                     break;
             }
         });
