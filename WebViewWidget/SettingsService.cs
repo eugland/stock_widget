@@ -51,23 +51,19 @@ public sealed class SettingsService : INotifyPropertyChanged {
                 !string.IsNullOrWhiteSpace(lang)) {
                 return lang;
             }
-
             var systemLang = CultureInfo.CurrentUICulture.TwoLetterISOLanguageName;
             Debug.WriteLine($"Got System Lang {systemLang}");
             if (!LanguageCandidates.Contains(systemLang)) {
                 systemLang = "en";
             }
-
             _settings[nameof(Language)] = systemLang;
             SaveSettings();
-
             return systemLang;
         }
         set {
             if (Language == value) {
                 return;
             }
-
             _settings[nameof(Language)] = value;
             SaveSettings();
             RestartApplication("settings");
@@ -86,14 +82,11 @@ public sealed class SettingsService : INotifyPropertyChanged {
             if (!File.Exists(_filePath)) {
                 return;
             }
-
             var json = File.ReadAllText(_filePath);
             var dict = JsonSerializer.Deserialize<Dictionary<string, JsonElement>>(json);
-
             if (dict == null) {
                 return;
             }
-
             foreach (var kvp in dict) {
                 if (kvp.Key == nameof(PortfolioSymbols)) {
                     try {
@@ -131,7 +124,6 @@ public sealed class SettingsService : INotifyPropertyChanged {
         if (list.Any(s => s.Symbol.Equals(symbol.Symbol, StringComparison.OrdinalIgnoreCase))) {
             return;
         }
-
         list.Add(symbol);
         PortfolioSymbols = list;
         PortfolioChanged?.Invoke(this, new PortfolioChangedEventArgs(PortfolioChangeType.Added, symbol.Symbol));
@@ -141,7 +133,6 @@ public sealed class SettingsService : INotifyPropertyChanged {
         if (string.IsNullOrWhiteSpace(symbol)) {
             return;
         }
-
         var list = PortfolioSymbols;
         list.RemoveAll(s => string.Equals(s.Symbol, symbol, StringComparison.OrdinalIgnoreCase));
         PortfolioSymbols = list;
@@ -162,11 +153,9 @@ public sealed class SettingsService : INotifyPropertyChanged {
                 Debug.WriteLine($"Failed to get setting {key}");
             }
         }
-
         if (_settings.TryGetValue(key, out var obj) && obj is T typed) {
             return typed;
         }
-
         return defaultValue;
     }
 
