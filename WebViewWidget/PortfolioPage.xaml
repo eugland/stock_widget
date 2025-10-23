@@ -1,11 +1,12 @@
 ﻿<Page x:Class="WebViewWidget.PortfolioPage"
       xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
       xmlns:local="clr-namespace:WebViewWidget"
       xmlns:res="clr-namespace:WebViewWidget.Properties"
-      mc:Ignorable="d" 
+      xmlns:global="clr-namespace:"
+      mc:Ignorable="d"
       d:DesignHeight="800" d:DesignWidth="1200"
       Title="Portfolio"
       Background="#111827">
@@ -15,39 +16,33 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate>
-                        <Rectangle Margin="-1" 
-                                   StrokeThickness="2" 
-                                   Stroke="#4f5b93" 
-                                   StrokeDashArray="1 0" 
-                                   SnapsToDevicePixels="true"/>
+                        <Rectangle Margin="-1"
+                                   StrokeThickness="2"
+                                   Stroke="#4f5b93"
+                                   StrokeDashArray="1 0"
+                                   SnapsToDevicePixels="true" />
                     </ControlTemplate>
                 </Setter.Value>
             </Setter>
         </Style>
 
-        <Style TargetType="TextBlock" x:Key="LabelStyle">
-            <Setter Property="Foreground" Value="#9CA3AF"/>
-            <Setter Property="FontSize" Value="12"/>
-            <Setter Property="Margin" Value="0,0,0,4"/>
-        </Style>
-
         <Style TargetType="ComboBoxItem">
-            <Setter Property="Padding" Value="8,5"/>
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Padding" Value="8,5" />
+            <Setter Property="Foreground" Value="White" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ComboBoxItem">
                         <Border x:Name="Bd"
                                 Padding="{TemplateBinding Padding}"
                                 Background="Transparent">
-                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center"/>
+                            <ContentPresenter HorizontalAlignment="Left" VerticalAlignment="Center" />
                         </Border>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="#374151"/>
+                                <Setter TargetName="Bd" Property="Background" Value="#374151" />
                             </Trigger>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="Bd" Property="Background" Value="#4B5563"/>
+                                <Setter TargetName="Bd" Property="Background" Value="#4B5563" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -56,19 +51,19 @@
         </Style>
 
         <Style TargetType="ComboBox">
-            <Setter Property="Background" Value="#374151"/>
-            <Setter Property="Foreground" Value="White"/>
-            <Setter Property="BorderBrush" Value="#4B5563"/>
-            <Setter Property="Padding" Value="8,5"/>
+            <Setter Property="Background" Value="#374151" />
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="BorderBrush" Value="#4B5563" />
+            <Setter Property="Padding" Value="8,5" />
         </Style>
 
         <Style TargetType="Border" x:Key="CardBorderStyle">
-            <Setter Property="Background" Value="#1F2937"/>
-            <Setter Property="BorderBrush" Value="#374151"/>
-            <Setter Property="BorderThickness" Value="1"/>
-            <Setter Property="CornerRadius" Value="8"/>
-            <Setter Property="Padding" Value="16"/>
-            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Background" Value="#1F2937" />
+            <Setter Property="BorderBrush" Value="#374151" />
+            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="CornerRadius" Value="8" />
+            <Setter Property="Padding" Value="16" />
+            <Setter Property="Margin" Value="10" />
         </Style>
     </Page.Resources>
 
@@ -88,9 +83,10 @@
                          BorderBrush="#4B5563"
                          FontSize="14"
                          VerticalContentAlignment="Center"
-                         FocusVisualStyle="{StaticResource DarkThemeFocusVisualStyle}"/>
+                         FocusVisualStyle="{StaticResource DarkThemeFocusVisualStyle}" />
 
-                <TextBlock IsHitTestVisible="False" Text="&#xE721;" FontFamily="Segoe MDL2 Assets" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="White"/>
+                <TextBlock IsHitTestVisible="False" Text="&#xE721;" FontFamily="Segoe MDL2 Assets"
+                           VerticalAlignment="Center" HorizontalAlignment="Left" Margin="10,0,0,0" Foreground="White" />
 
                 <TextBlock IsHitTestVisible="False" 
                            Text="{x:Static res:Strings.Portfolio_search_hint}" 
@@ -101,10 +97,10 @@
                            FontSize="14">
                     <TextBlock.Style>
                         <Style TargetType="{x:Type TextBlock}">
-                            <Setter Property="Visibility" Value="Collapsed"/>
+                            <Setter Property="Visibility" Value="Collapsed" />
                             <Style.Triggers>
                                 <DataTrigger Binding="{Binding Text, ElementName=StockSearchTextBox}" Value="">
-                                    <Setter Property="Visibility" Value="Visible"/>
+                                    <Setter Property="Visibility" Value="Visible" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
@@ -112,38 +108,42 @@
                 </TextBlock>
 
                 <Popup x:Name="SearchPopup"
-                   PlacementTarget="{Binding ElementName=StockSearchTextBox}"
-                   Placement="Bottom"
-                   StaysOpen="False">
-                    <Border BorderBrush="#4B5563" BorderThickness="1" Background="#1F2937" CornerRadius="4" MinWidth="{Binding ActualWidth, ElementName=StockSearchTextBox}">
+                       PlacementTarget="{Binding ElementName=StockSearchTextBox}"
+                       Placement="Bottom"
+                       StaysOpen="False">
+                    <Border BorderBrush="#4B5563" BorderThickness="1" Background="#1F2937" CornerRadius="4"
+                            MinWidth="{Binding ActualWidth, ElementName=StockSearchTextBox}">
                         <ListBox x:Name="SearchResultsListBox"
-         SelectionChanged="SearchResultsListBox_SelectionChanged"
-         Background="Transparent"
-         BorderThickness="0"
-         Foreground="White">
+                                 SelectionChanged="SearchResultsListBox_SelectionChanged"
+                                 Background="Transparent"
+                                 BorderThickness="0"
+                                 Foreground="White">
 
                             <ListBox.ItemContainerStyle>
                                 <Style TargetType="ListBoxItem">
-                                    <Setter Property="Padding" Value="10"/>
-                                    <Setter Property="Foreground" Value="White"/>
-                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="Padding" Value="10" />
+                                    <Setter Property="Foreground" Value="White" />
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
                                     <Setter Property="Template">
                                         <Setter.Value>
                                             <ControlTemplate TargetType="{x:Type ListBoxItem}">
                                                 <Border x:Name="Border"
-                            Padding="{TemplateBinding Padding}"
-                            Background="{TemplateBinding Background}"
-                            SnapsToDevicePixels="true">
-                                                    <ContentPresenter HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                            SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"/>
+                                                        Padding="{TemplateBinding Padding}"
+                                                        Background="{TemplateBinding Background}"
+                                                        SnapsToDevicePixels="true">
+                                                    <ContentPresenter
+                                                        HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                        SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" />
                                                 </Border>
                                                 <ControlTemplate.Triggers>
                                                     <Trigger Property="IsMouseOver" Value="true">
-                                                        <Setter TargetName="Border" Property="Background" Value="#374151"/>
+                                                        <Setter TargetName="Border" Property="Background"
+                                                                Value="#374151" />
                                                     </Trigger>
                                                     <Trigger Property="IsSelected" Value="true">
-                                                        <Setter TargetName="Border" Property="Background" Value="#4B5563"/>
+                                                        <Setter TargetName="Border" Property="Background"
+                                                                Value="#4B5563" />
                                                     </Trigger>
                                                 </ControlTemplate.Triggers>
                                             </ControlTemplate>
@@ -156,34 +156,34 @@
                                 <DataTemplate>
                                     <Grid HorizontalAlignment="Stretch">
                                         <Grid.ColumnDefinitions>
-                                            <ColumnDefinition Width="*"/>
-                                            <ColumnDefinition Width="Auto"/>
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="Auto" />
                                         </Grid.ColumnDefinitions>
 
                                         <StackPanel Grid.Column="0" Margin="0,0,10,0">
-                                            <TextBlock Text="{Binding Name}" 
-                               FontWeight="SemiBold" 
-                               Foreground="White" 
-                               TextTrimming="CharacterEllipsis"/>
+                                            <TextBlock Text="{Binding Name}"
+                                                       FontWeight="SemiBold"
+                                                       Foreground="White"
+                                                       TextTrimming="CharacterEllipsis" />
 
                                             <StackPanel Orientation="Horizontal">
-                                                <TextBlock Text="{Binding Symbol}" 
-                                   FontWeight="Bold" 
-                                   Foreground="#9CA3AF"/>
-                                                <TextBlock Text="{Binding ExchDisp, StringFormat=' ({0})'}" 
-                                   Foreground="#9CA3AF" 
-                                   Opacity="0.7" 
-                                   Margin="5,0,0,0"/>
+                                                <TextBlock Text="{Binding Symbol}"
+                                                           FontWeight="Bold"
+                                                           Foreground="#9CA3AF" />
+                                                <TextBlock Text="{Binding ExchDisp, StringFormat=' ({0})'}"
+                                                           Foreground="#9CA3AF"
+                                                           Opacity="0.7"
+                                                           Margin="5,0,0,0" />
                                             </StackPanel>
                                         </StackPanel>
 
-                                        <TextBlock Grid.Column="1" 
-                           Text="{Binding TypeDisp}" 
-                           VerticalAlignment="Center" 
-                           HorizontalAlignment="Right"
-                           Foreground="#6B7280" 
-                           FontSize="11"
-                           FontStyle="Italic"/>
+                                        <TextBlock Grid.Column="1"
+                                                   Text="{Binding TypeDisp}"
+                                                   VerticalAlignment="Center"
+                                                   HorizontalAlignment="Right"
+                                                   Foreground="#6B7280"
+                                                   FontSize="11"
+                                                   FontStyle="Italic" />
                                     </Grid>
                                 </DataTemplate>
                             </ListBox.ItemTemplate>
@@ -197,7 +197,7 @@
             <ItemsControl ItemsSource="{Binding Portfolio}" Margin="0,20,0,0">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
-                        <WrapPanel Orientation="Horizontal"/>
+                        <WrapPanel Orientation="Horizontal" />
                     </ItemsPanelTemplate>
                 </ItemsControl.ItemsPanel>
 
@@ -206,22 +206,26 @@
                         <Border Style="{StaticResource CardBorderStyle}" MinWidth="280" MaxWidth="320">
                             <Grid>
                                 <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="Auto" />
                                 </Grid.RowDefinitions>
 
                                 <StackPanel Grid.Row="0">
                                     <Grid>
-                                        <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="SemiBold" Foreground="White" TextWrapping="Wrap"/>
-                                        <Button Content="&#x2715;" Click="RemoveButton_Click" HorizontalAlignment="Right" VerticalAlignment="Top" Background="Transparent" BorderBrush="Transparent" Foreground="#9CA3AF" FontSize="16" FontWeight="Bold"/>
+                                        <TextBlock Text="{Binding Name}" FontSize="18" FontWeight="SemiBold"
+                                                   Foreground="White" TextWrapping="Wrap" />
+                                        <Button Content="&#x2715;" Click="RemoveButton_Click"
+                                                HorizontalAlignment="Right" VerticalAlignment="Top"
+                                                Background="Transparent" BorderBrush="Transparent" Foreground="#9CA3AF"
+                                                FontSize="16" FontWeight="Bold" />
                                     </Grid>
-                                    <TextBlock Text="{Binding Symbol}" Foreground="#9CA3AF" Margin="0,2,0,0"/>
+                                    <TextBlock Text="{Binding Symbol}" Foreground="#9CA3AF" Margin="0,2,0,0" />
                                     <!--<TextBlock Text="{Binding PriceDisplay}" FontSize="24" FontWeight="Bold" Foreground="White" Margin="0,8,0,0"/>
                                     <TextBlock Text="{Binding ChangeDisplay}" Foreground="{Binding ChangeColor}" FontWeight="Medium"/>
                                     -->
-                                 </StackPanel>
-                                
+                                </StackPanel>
+
                                 <!--
                                 <Grid Grid.Row="1" Margin="0,16,0,16">
                                     <Border Background="#374151" CornerRadius="4" Height="120">
@@ -258,4 +262,3 @@
         </StackPanel>
     </ScrollViewer>
 </Page>
-

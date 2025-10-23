@@ -1,43 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Windows;
-
-// ... (other using statements)
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 using WebViewWidget.Properties;
-using Brush = System.Windows.Media.Brush;
 using Brushes = System.Windows.Media.Brushes;
-using Button = System.Windows.Controls.Button;
 using Color = System.Windows.Media.Color;
-using ColorConverter = System.Windows.Media.ColorConverter;
-using UserControl = System.Windows.Controls.UserControl;
 
 namespace WebViewWidget;
 
-public partial class DashboardWindow : Window, INotifyPropertyChanged
-{
-    public event PropertyChangedEventHandler? PropertyChanged;
+public enum DashboardPageIndex {
+    Portfolio = 0,
+    Settings = 1
+}
 
-    public string FooterStatus
-    {
-        get => _footerStatus;
-        set { _footerStatus = value; PropertyChanged?.Invoke(this, new(nameof(FooterStatus))); }
-    }
+public partial class DashboardWindow : Window, INotifyPropertyChanged {
     private string _footerStatus = Strings.Footer_Ready;
 
-    public record NavItem(string Title, string Icon, Action Action);
-
-    public DashboardWindow(int index = 0)
-    {
+    public DashboardWindow(DashboardPageIndex index = DashboardPageIndex.Portfolio) {
         InitializeComponent();
         DataContext = this;
 
@@ -47,38 +28,45 @@ public partial class DashboardWindow : Window, INotifyPropertyChanged
             new(Strings.Nav_Settings,  "\uE713", () => ContentFrame.Navigate((new SettingsPage())) ),  // gear
         };
         NavList.ItemsSource = items;
-        NavList.SelectedIndex = index;
+        SelectTab(index);
         ToastService.Register(this);
     }
 
-    public void navigate_setting()
-    {
-        ContentFrame.Navigate((new SettingsPage()));
-    }
-
-    private void NavList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
-        if (NavList.SelectedItem is NavItem item)
-        {
-            item.Action?.Invoke();
+    public string FooterStatus {
+        get => _footerStatus;
+        set {
+            _footerStatus = value;
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(FooterStatus)));
         }
     }
 
-    protected override void OnClosing(CancelEventArgs e)
-    {
+    public event PropertyChangedEventHandler? PropertyChanged;
+
+    public void SelectTab(DashboardPageIndex index) {
+        NavList.SelectedIndex = (int)index;
+    }
+
+
+    public void navigate_setting() {
+        ContentFrame.Navigate(new SettingsPage());
+    }
+
+    private void NavList_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+        if (NavList.SelectedItem is NavItem item) item.Action?.Invoke();
+    }
+
+    protected override void OnClosing(CancelEventArgs e) {
         // Prevent closing; just hide
         e.Cancel = true;
-        this.Hide();
+        Hide();
     }
-    public void ShowToast(string message, int ms = 2500)
-    {
+
+    public void ShowToast(string message, int ms = 2500) {
         Debug.WriteLine($"[DashBoard] Showing toast: \"{message}\" (Duration={ms}ms)");
         if (string.IsNullOrWhiteSpace(message)) return;
 
-        void CreateAndAnimate()
-        {
-            var card = new Border
-            {
+        void CreateAndAnimate() {
+            var card = new Border {
                 Background = new SolidColorBrush(Color.FromRgb(0x1F, 0x2A, 0x36)),
                 BorderBrush = new SolidColorBrush(Color.FromRgb(0x3B, 0x82, 0xF6)),
                 BorderThickness = new Thickness(1),
@@ -86,8 +74,7 @@ public partial class DashboardWindow : Window, INotifyPropertyChanged
                 Padding = new Thickness(14, 10, 14, 10),
                 Opacity = 0,
                 RenderTransform = new TranslateTransform(0, 12),
-                Child = new TextBlock
-                {
+                Child = new TextBlock {
                     Text = message,
                     Foreground = Brushes.White,
                     FontSize = 14,
@@ -101,28 +88,32 @@ public partial class DashboardWindow : Window, INotifyPropertyChanged
 
             // --- IN animations ---
             var fadeIn = new DoubleAnimation(0, 1, TimeSpan.FromMilliseconds(160))
-            { EasingFunction = new QuadraticEase() };
+                { EasingFunction = new QuadraticEase() };
 
             var slideIn = new DoubleAnimation(12, 0, TimeSpan.FromMilliseconds(160))
-            { EasingFunction = new QuadraticEase() };
+                { EasingFunction = new QuadraticEase() };
 
             var fadeOut = new DoubleAnimation(1, 0, TimeSpan.FromMilliseconds(180))
-            { BeginTime = TimeSpan.FromMilliseconds(ms), EasingFunction = new QuadraticEase() };
+                { BeginTime = TimeSpan.FromMilliseconds(ms), EasingFunction = new QuadraticEase() };
 
             var slideOut = new DoubleAnimation(0, 12, TimeSpan.FromMilliseconds(180))
-            { BeginTime = TimeSpan.FromMilliseconds(ms), EasingFunction = new QuadraticEase() };
+                { BeginTime = TimeSpan.FromMilliseconds(ms), EasingFunction = new QuadraticEase() };
 
             fadeOut.Completed += (_, __) => ToastPanel.Children.Remove(card);
 
-            card.BeginAnimation(UIElement.OpacityProperty, fadeIn, HandoffBehavior.Compose);
-            (card.RenderTransform as TranslateTransform)!.BeginAnimation(TranslateTransform.YProperty, slideIn, HandoffBehavior.Compose);
+            card.BeginAnimation(OpacityProperty, fadeIn, HandoffBehavior.Compose);
+            (card.RenderTransform as TranslateTransform)!.BeginAnimation(TranslateTransform.YProperty, slideIn,
+                HandoffBehavior.Compose);
 
-            card.BeginAnimation(UIElement.OpacityProperty, fadeOut, HandoffBehavior.Compose);
-            (card.RenderTransform as TranslateTransform)!.BeginAnimation(TranslateTransform.YProperty, slideOut, HandoffBehavior.Compose);
+            card.BeginAnimation(OpacityProperty, fadeOut, HandoffBehavior.Compose);
+            (card.RenderTransform as TranslateTransform)!.BeginAnimation(TranslateTransform.YProperty, slideOut,
+                HandoffBehavior.Compose);
         }
 
         // Ensure we’re on the UI thread
         if (!Dispatcher.CheckAccess()) Dispatcher.Invoke(CreateAndAnimate);
         else CreateAndAnimate();
     }
+
+    public record NavItem(string Title, string Icon, Action Action);
 }
