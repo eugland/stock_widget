@@ -1,5 +1,4 @@
-﻿
-using System.Data;
+﻿using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.Windows;
@@ -9,41 +8,30 @@ using Application = System.Windows.Application;
 
 namespace WebViewWidget;
 
-public partial class App : Application
-{
-    private NotifyIcon? _tray;
+public partial class App : Application {
     private DashboardWindow? _main;
     private bool _reallyExit;
+    private NotifyIcon? _tray;
 
-    public App()
-    {
-
-    }
-
-    protected override void OnStartup(StartupEventArgs e)
-    {
+    protected override void OnStartup(StartupEventArgs e) {
         base.OnStartup(e);
         var settings = SettingsService.Instance;
 
-        string route = e.Args.FirstOrDefault(a => a.StartsWith("--route=", StringComparison.OrdinalIgnoreCase))
-                      ?.Substring("--route=".Length) ?? "default";
 
-        // Get normalized 2-letter language from your SettingsService
-        var lang = settings.Language; // e.g., "en", "zh", "ja", "ko", "es"
+        // Set language
+        var lang = settings.Language;
         var culture = new CultureInfo(lang);
 
-        Thread.CurrentThread.CurrentCulture = culture;      // dates/numbers
-        Thread.CurrentThread.CurrentUICulture = culture;    // RESX lookup
+        Thread.CurrentThread.CurrentCulture = culture; // dates/numbers
+        Thread.CurrentThread.CurrentUICulture = culture; // RESX lookup
 
-        // Make WPF element language follow Culture (affects number/date formatting in bindings)
         FrameworkElement.LanguageProperty.OverrideMetadata(
             typeof(FrameworkElement),
             new FrameworkPropertyMetadata(XmlLanguage.GetLanguage(culture.IetfLanguageTag)));
 
 
-        // 1) Build tray icon FIRST
-        _tray = new NotifyIcon
-        {
+        // 1) tray icon
+        _tray = new NotifyIcon {
             Text = "Stock Widget",
             Icon = LoadIconFromResource("Assets/favicon.ico"),
             Visible = true
@@ -55,48 +43,57 @@ public partial class App : Application
 
         // optional: quick submenu to open ticker windows on demand
         var symbols = (settings.PortfolioSymbols?.Select(q => q.Symbol)
-                       ?? Enumerable.Empty<string>())
-                      .Where(s => !string.IsNullOrWhiteSpace(s))
-                      .Distinct(StringComparer.OrdinalIgnoreCase)
-                      .ToList();
+                       ?? [])
+            .Where(s => !string.IsNullOrWhiteSpace(s))
+            .Distinct(StringComparer.OrdinalIgnoreCase)
+            .ToList();
 
         var showService = StockWindowService.Instance;
-        if (route.Equals("settings", StringComparison.OrdinalIgnoreCase))
-        {
+        var route =
+            e.Args.FirstOrDefault(a => a.StartsWith("--route=", StringComparison.OrdinalIgnoreCase))?[
+                "--route=".Length..] ?? "default";
+        if (route.Equals("settings", StringComparison.OrdinalIgnoreCase)) {
             Debug.WriteLine("Recognized settings route");
-            ShowMainWindow(1);
-        } else
-        {
-            ShowMainWindow(0);
+            ShowMainWindow(DashboardPageIndex.Settings);
         }
+        else {
+            ShowMainWindow();
+        }
+
         showService.ShowAllStockWindows();
         menu.Items.Add(Strings.Menu_ShowAllWidgets, null, (_, __) => showService.ShowAllStockWindows());
-        menu.Items.Add(Strings.Menu_HideAllWidgets, null, (_, __) => showService.HideAllStockWindows()); 
+        menu.Items.Add(Strings.Menu_HideAllWidgets, null, (_, __) => showService.HideAllStockWindows());
         menu.Items.Add(Strings.Menu_Exits, null, (_, __) => ExitApp());
         _tray.ContextMenuStrip = menu;
     }
-    
 
-    private static Icon LoadIconFromResource(string resourcePath)
-    {
+    private static Icon LoadIconFromResource(string resourcePath) {
         var uri = new Uri($"pack://application:,,,/{resourcePath}", UriKind.Absolute);
-        using var stream = Application.GetResourceStream(uri)!.Stream;
+        using var stream = GetResourceStream(uri)!.Stream;
         return new Icon(stream);
     }
 
-    private void ShowMainWindow(int index = 0)
-    {
-        if (_main == null)
-        {
+    public void ShowMainWindow(DashboardPageIndex index = DashboardPageIndex.Portfolio) {
+        if (_main == null) {
             _main = new DashboardWindow(index);
+            _main.Closing += Main_Closing; // safe to add here as well
         }
+        else {
+            _main.SelectTab(index);
+        }
+
         _main.Show();
-        _main.WindowState = WindowState.Normal;
+        if (_main.WindowState == WindowState.Minimized)
+            _main.WindowState = WindowState.Normal;
+
+        // to the top
         _main.Activate();
+        _main.Topmost = true;
+        _main.Topmost = false;
+        _main.Focus();
     }
 
-    private void ExitApp()
-    {
+    private void ExitApp() {
         _reallyExit = true;
         _tray!.Visible = false;
         _tray.Dispose();
@@ -104,16 +101,12 @@ public partial class App : Application
         Shutdown();
     }
 
-    private void Main_Closing(object? sender, System.ComponentModel.CancelEventArgs e)
-    {
-        if (_reallyExit) return; // allow actual exit
-
-        // Hide instead of close → keeps tray icon alive
+    private void Main_Closing(object? sender, CancelEventArgs e) {
+        if (_reallyExit) return;
         e.Cancel = true;
         _main!.Hide();
         _tray?.ShowBalloonTip(1500, Strings.Tray_Header,
             Strings.Tray_ReopenHint,
             ToolTipIcon.Info);
     }
-
 }

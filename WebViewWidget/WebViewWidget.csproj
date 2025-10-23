@@ -12,20 +12,20 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Resource Include="Assets\favicon.ico" />
+    <Resource Include="Assets\favicon.ico"/>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3537.50" />
-      
+    <PackageReference Include="Microsoft.Web.WebView2" Version="1.0.3537.50"/>
+
   </ItemGroup>
 
-    <ItemGroup>
-        <Reference Include="System.Windows.Forms" />
-    </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Windows.Forms"/>
+  </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\OoplesFinance.YahooFinanceAPI\src\OoplesFinance.YahooFinanceAPI.csproj" />
+    <ProjectReference Include="..\OoplesFinance.YahooFinanceAPI\src\OoplesFinance.YahooFinanceAPI.csproj"/>
   </ItemGroup>
 
   <ItemGroup>
@@ -59,6 +59,10 @@
       <Pack>True</Pack>
       <PackagePath>\</PackagePath>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <EditorConfigFiles Remove=".editorconfig"/>
   </ItemGroup>
 
 </Project>

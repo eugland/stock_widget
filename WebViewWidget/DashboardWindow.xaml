@@ -4,7 +4,6 @@
         Title="Stock Widget — Dashboard"
         Width="1040" Height="680" MinWidth="1040" MinHeight="680"
         Background="#121316" SnapsToDevicePixels="True" UseLayoutRounding="True">
-
     <Window.Resources>
 
         <DataTemplate x:Key="NavItemTemplate">
@@ -14,48 +13,48 @@
                            FontSize="18"
                            Foreground="#C6D2DD"
                            Width="28" Margin="2,0,12,0"
-                           VerticalAlignment="Center"/>
+                           VerticalAlignment="Center" />
                 <TextBlock Text="{Binding Title}"
                            FontSize="15" FontWeight="SemiBold"
                            Foreground="#E9EEF3"
-                           VerticalAlignment="Center"/>
+                           VerticalAlignment="Center" />
             </DockPanel>
         </DataTemplate>
 
         <Style x:Key="NavListBoxItemStyle" TargetType="ListBoxItem">
-            <Setter Property="Padding" Value="14,12"/>
-            <Setter Property="MinHeight" Value="44"/>
-            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderBrush" Value="Transparent"/>
-            <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="Padding" Value="14,12" />
+            <Setter Property="MinHeight" Value="44" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderBrush" Value="Transparent" />
+            <Setter Property="Cursor" Value="Hand" />
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="ListBoxItem">
                         <Grid>
                             <Border x:Name="SelBar" Width="3" HorizontalAlignment="Left"
-                                    CornerRadius="3" Background="#3B82F6" Opacity="0"/>
+                                    CornerRadius="3" Background="#3B82F6" Opacity="0" />
                             <Border x:Name="Root" Background="{TemplateBinding Background}" CornerRadius="10">
                                 <ContentPresenter Margin="8,0,6,0"
                                                   VerticalAlignment="Center"
-                                                  ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                                                  ContentTemplate="{TemplateBinding ContentTemplate}" />
                             </Border>
                         </Grid>
                         <ControlTemplate.Triggers>
                             <Trigger Property="IsMouseOver" Value="True">
-                                <Setter TargetName="Root" Property="Background" Value="#1F2A36"/>
+                                <Setter TargetName="Root" Property="Background" Value="#1F2A36" />
                             </Trigger>
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter TargetName="Root" Property="Background" Value="#2A3B4E"/>
-                                <Setter TargetName="SelBar" Property="Opacity" Value="1"/>
-                                <Setter Property="Foreground" Value="#FFFFFF"/>
+                                <Setter TargetName="Root" Property="Background" Value="#2A3B4E" />
+                                <Setter TargetName="SelBar" Property="Opacity" Value="1" />
+                                <Setter Property="Foreground" Value="#FFFFFF" />
                             </Trigger>
                             <Trigger Property="IsKeyboardFocusWithin" Value="True">
-                                <Setter TargetName="Root" Property="BorderBrush" Value="#3B82F6"/>
-                                <Setter TargetName="Root" Property="BorderThickness" Value="1"/>
+                                <Setter TargetName="Root" Property="BorderBrush" Value="#3B82F6" />
+                                <Setter TargetName="Root" Property="BorderThickness" Value="1" />
                             </Trigger>
                             <Trigger Property="IsEnabled" Value="False">
-                                <Setter Property="Opacity" Value="0.6"/>
+                                <Setter Property="Opacity" Value="0.6" />
                             </Trigger>
                         </ControlTemplate.Triggers>
                     </ControlTemplate>
@@ -64,21 +63,21 @@
         </Style>
 
         <Style x:Key="NavListBoxStyle" TargetType="ListBox">
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="ItemTemplate" Value="{StaticResource NavItemTemplate}"/>
-            <Setter Property="ItemContainerStyle" Value="{StaticResource NavListBoxItemStyle}"/>
-            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto"/>
-            <Setter Property="KeyboardNavigation.TabNavigation" Value="Continue"/>
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="ItemTemplate" Value="{StaticResource NavItemTemplate}" />
+            <Setter Property="ItemContainerStyle" Value="{StaticResource NavListBoxItemStyle}" />
+            <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="Continue" />
         </Style>
 
     </Window.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="240"/>
-            <ColumnDefinition Width="12"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="240" />
+            <ColumnDefinition Width="12" />
+            <ColumnDefinition Width="*" />
         </Grid.ColumnDefinitions>
 
         <ListBox x:Name="NavList"
@@ -88,23 +87,22 @@
                  Padding="8,16,8,8"
                  Style="{StaticResource NavListBoxStyle}"
                  SelectionMode="Single"
-                 SelectionChanged="NavList_SelectionChanged"/>
+                 SelectionChanged="NavList_SelectionChanged" />
 
         <Frame x:Name="ContentFrame"
                Grid.Column="2"
-               NavigationUIVisibility="Hidden"
-               />
+               NavigationUIVisibility="Hidden" />
 
         <StackPanel x:Name="ToastPanel"
-            Grid.ColumnSpan="3"
-            VerticalAlignment="Bottom"
-            HorizontalAlignment="Right"
-            Margin="0,0,24,24"
-            Panel.ZIndex="999"
-            Orientation="Vertical"
-            Width="260" Height="100"
+                    Grid.ColumnSpan="3"
+                    VerticalAlignment="Bottom"
+                    HorizontalAlignment="Right"
+                    Margin="0,0,24,24"
+                    Panel.ZIndex="999"
+                    Orientation="Vertical"
+                    Width="260" Height="100"
 
-            IsHitTestVisible="False"/>
+                    IsHitTestVisible="False" />
 
 
     </Grid>

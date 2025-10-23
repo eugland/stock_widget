@@ -16,26 +16,26 @@
     <Window.Resources>
         <Color x:Key="ActiveColor">#56B6F7</Color>
         <Color x:Key="ActiveBackground">#2856B6F7</Color>
-        <SolidColorBrush x:Key="DefaultForegroundBrush" Color="#8792A2"/>
-        <SolidColorBrush x:Key="ActiveForegroundBrush" Color="{StaticResource ActiveColor}"/>
-        <SolidColorBrush x:Key="ActiveBackgroundBrush" Color="{StaticResource ActiveBackground}"/>
+        <SolidColorBrush x:Key="DefaultForegroundBrush" Color="#8792A2" />
+        <SolidColorBrush x:Key="ActiveForegroundBrush" Color="{StaticResource ActiveColor}" />
+        <SolidColorBrush x:Key="ActiveBackgroundBrush" Color="{StaticResource ActiveBackground}" />
 
         <Style x:Key="FlatIconToggleStyle" TargetType="ToggleButton">
-            <Setter Property="Padding" Value="4"/>
-            <Setter Property="BorderThickness" Value="0"/>
-            <Setter Property="Background" Value="Transparent"/>
-            <Setter Property="Foreground" Value="{StaticResource DefaultForegroundBrush}"/>
-            <Setter Property="FontWeight" Value="Regular"/>
+            <Setter Property="Padding" Value="4" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Background" Value="Transparent" />
+            <Setter Property="Foreground" Value="{StaticResource DefaultForegroundBrush}" />
+            <Setter Property="FontWeight" Value="Regular" />
 
             <Style.Triggers>
                 <Trigger Property="IsChecked" Value="True">
-                    <Setter Property="Foreground" Value="{StaticResource ActiveForegroundBrush}"/>
-                    <Setter Property="Background" Value="{StaticResource ActiveBackgroundBrush}"/>
-                    <Setter Property="FontWeight" Value="Bold"/>
+                    <Setter Property="Foreground" Value="{StaticResource ActiveForegroundBrush}" />
+                    <Setter Property="Background" Value="{StaticResource ActiveBackgroundBrush}" />
+                    <Setter Property="FontWeight" Value="Bold" />
                 </Trigger>
 
                 <Trigger Property="IsMouseOver" Value="True">
-                    <Setter Property="Background" Value="{StaticResource ActiveBackgroundBrush}"/>
+                    <Setter Property="Background" Value="{StaticResource ActiveBackgroundBrush}" />
                 </Trigger>
             </Style.Triggers>
         </Style>
@@ -46,16 +46,16 @@
             <Grid>
                 <!-- Row 0: Header, Row 1: Chart, Row 2: Footer -->
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="Auto" />
                 </Grid.RowDefinitions>
 
                 <!-- HEADER -->
                 <Grid Margin="4" Grid.Row="0">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <!-- Left side: Symbol • [Buttons here instead of RangeLabel] -->
@@ -64,23 +64,24 @@
                                    FontSize="24"
                                    FontWeight="Bold"
                                    Foreground="#F5F7FA"
-                                   Margin="0,0,8,0"/>
+                                   Margin="0,0,8,0" />
                         <TextBlock Text="•"
                                    FontSize="16"
                                    Foreground="#6C7480"
                                    Margin="0,0,8,0"
-                                   VerticalAlignment="Center"/>
+                                   VerticalAlignment="Center" />
 
                         <!-- Inline time-range buttons -->
                         <StackPanel Orientation="Horizontal" VerticalAlignment="Center">
-                            <Button x:Name="Btn1D" Content="1D" Margin="0,0,6,0" Tag="_1Day,_2Minutes" Click="TimeRangeButton_Click"
-                                    Background="Transparent" BorderThickness="0" Foreground="#A9B1BB" Cursor="Hand"/>
+                            <Button x:Name="Btn1D" Content="1D" Margin="0,0,6,0" Tag="_1Day,_2Minutes"
+                                    Click="TimeRangeButton_Click"
+                                    Background="Transparent" BorderThickness="0" Foreground="#A9B1BB" Cursor="Hand" />
                             <Button Content="5D" Margin="0,0,6,0" Tag="_5Days,_15Minutes" Click="TimeRangeButton_Click"
-                                    Background="Transparent" BorderThickness="0" Foreground="#A9B1BB" Cursor="Hand"/>
+                                    Background="Transparent" BorderThickness="0" Foreground="#A9B1BB" Cursor="Hand" />
                             <Button Content="1M" Margin="0,0,6,0" Tag="_1Month,_1Hour" Click="TimeRangeButton_Click"
-                                    Background="Transparent" BorderThickness="0" Foreground="#A9B1BB" Cursor="Hand"/>
+                                    Background="Transparent" BorderThickness="0" Foreground="#A9B1BB" Cursor="Hand" />
                             <Button Content="6M" Margin="0,0,0,0" Tag="_6Months,_1Day" Click="TimeRangeButton_Click"
-                                    Background="Transparent" BorderThickness="0" Foreground="#A9B1BB" Cursor="Hand"/>
+                                    Background="Transparent" BorderThickness="0" Foreground="#A9B1BB" Cursor="Hand" />
                         </StackPanel>
                     </StackPanel>
 
@@ -94,14 +95,14 @@
                                    FontSize="26"
                                    FontWeight="Black"
                                    Foreground="#F5F7FA"
-                                   Margin="0,0,10,0"/>
+                                   Margin="0,0,10,0" />
                         <Border Background="#153F2A"
                                 CornerRadius="14"
                                 Padding="10,4"
                                 VerticalAlignment="Center">
                             <TextBlock Text="{Binding ChangeDisplay}"
                                        Foreground="#72D17C"
-                                       FontWeight="SemiBold"/>
+                                       FontWeight="SemiBold" />
                         </Border>
                     </StackPanel>
                 </Grid>
@@ -118,8 +119,8 @@
                                          LineBrush="#56B6F7">
                         <local:AreaSparkline.FillBrush>
                             <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
-                                <GradientStop Color="#80339AD9" Offset="0"/>
-                                <GradientStop Color="#10339AD9" Offset="1"/>
+                                <GradientStop Color="#80339AD9" Offset="0" />
+                                <GradientStop Color="#10339AD9" Offset="1" />
                             </LinearGradientBrush>
                         </local:AreaSparkline.FillBrush>
                     </local:AreaSparkline>
@@ -128,33 +129,57 @@
                 <!-- FOOTER (was Grid.Row=3 before; buttons row removed) -->
                 <Grid Grid.Row="2">
                     <Grid.ColumnDefinitions>
-                        <ColumnDefinition/>
-                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="Auto" />
                     </Grid.ColumnDefinitions>
 
                     <TextBlock Grid.Column="0"
                                Text="{Binding UpdatedDisplay}"
                                Foreground="#8792A2"
                                FontSize="12"
-                               VerticalAlignment="Center"/>
+                               VerticalAlignment="Center" />
 
                     <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
                         <ToggleButton x:Name="AlwaysOnTopToggle"
-                  Content="📌"
-                  ToolTip="Always on Top"
-                  Click="ToggleAlwaysOnTop_Click"
-                  VerticalAlignment="Center"
-                  
-                  Background="Transparent" 
-                  BorderThickness="0" 
-                  Foreground="#8792A2" 
-                  Cursor="Hand"
-                  
-                  Style="{StaticResource FlatIconToggleStyle}"
-                  />
+                                      Content="📌"
+                                      ToolTip="Always on Top"
+                                      Click="ToggleAlwaysOnTop_Click"
+                                      VerticalAlignment="Center"
+
+                                      Foreground="#8792A2"
+                                      Cursor="Hand"
+
+                                      Style="{StaticResource FlatIconToggleStyle}" />
                     </StackPanel>
                 </Grid>
             </Grid>
         </Border>
+
+        <Grid.ContextMenu>
+            <ContextMenu>
+                <!-- Portfolio actions -->
+                <MenuItem Header="Add Ticker…" Click="AddTicker_Click" InputGestureText="Ctrl+N" />
+                <MenuItem Header="Remove This Ticker" Click="RemoveTicker_Click" InputGestureText="Ctrl+Del" />
+
+                <Separator />
+
+                <!-- View actions -->
+                <MenuItem Header="Hide This Ticker" Click="HideTicker_Click" InputGestureText="Ctrl+H" />
+
+                <!-- Pin / Always-on-top: bind to Window.Topmost -->
+                <MenuItem Header="Pin (Always on Top)"
+                          IsCheckable="True"
+                          IsChecked="{Binding RelativeSource={RelativeSource AncestorType=Window}, Path=Topmost, Mode=TwoWay}"
+                          Click="PinMenuItem_Click"
+                          InputGestureText="Ctrl+P" />
+
+                <Separator />
+
+                <!-- Optional: close just this widget window -->
+                <MenuItem Header="Close Widget" Click="CloseWidget_Click" InputGestureText="Ctrl+W" />
+            </ContextMenu>
+        </Grid.ContextMenu>
     </Grid>
+
+
 </Window>

@@ -4,36 +4,24 @@ using System.Windows.Controls;
 
 namespace WebViewWidget;
 
-public partial class SettingsPage : Page
-{
+public partial class SettingsPage {
     private static readonly SettingsService settings = SettingsService.Instance;
 
-    public SettingsPage()
-    {
+    public SettingsPage() {
         InitializeComponent();
         DataContext = settings;
-        Loaded += (_, __) =>
-        {
-            LanguageCombo.SelectedValue = settings.Language;
-        };
+        Loaded += (_, __) => { LanguageCombo.SelectedValue = settings.Language; };
     }
 
-
-
-    private void LanguageCombo_SelectionChanged(object sender, SelectionChangedEventArgs e)
-    {
+    private void LanguageCombo_SelectionChanged(object sender, SelectionChangedEventArgs e) {
         var sel = LanguageCombo.SelectedValue as string;
         if (!string.IsNullOrWhiteSpace(sel) &&
-            !string.Equals(sel, settings.Language, System.StringComparison.OrdinalIgnoreCase))
-        {
+            !string.Equals(sel, settings.Language, StringComparison.OrdinalIgnoreCase))
             settings.Language = sel;
-        }
     }
 
-    private void OpenMicrosoftStore_Click(object sender, RoutedEventArgs e)
-    {
+    private void OpenMicrosoftStore_Click(object sender, RoutedEventArgs e) {
         const string storeUri = "ms-windows-store://pdp/?productid=9WZDNCRFJ2R6";
         Process.Start(new ProcessStartInfo(storeUri) { UseShellExecute = true });
     }
-
 }
