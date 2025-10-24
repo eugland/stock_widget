@@ -143,6 +143,7 @@ public partial class StockWidgetWindow : INotifyPropertyChanged {
         if (sender is not Button { Tag: string tag } button) {
             return;
         }
+
         var parts = tag.Split(',');
         if (parts.Length != 2) {
             return;
@@ -176,6 +177,7 @@ public partial class StockWidgetWindow : INotifyPropertyChanged {
         while (d != null) {
             d = VisualTreeHelper.GetParent(d);
         }
+
         return false;
     }
 
@@ -187,15 +189,18 @@ public partial class StockWidgetWindow : INotifyPropertyChanged {
         _isFetching = true;
 
         try {
-            var ci = await _yahoo.GetChartInfoAsync(Symbol, SelectedTimeRange, SelectedTimeInterval);
+            var chartRoot = await _yahoo.GetChartResults(Symbol, SelectedTimeRange, SelectedTimeInterval);
 
-            if (ci.DateList.Count == 0 || ci.CloseList.Count == 0) {
+            var closer = chartRoot.Chart.Result[0].Indicators?.Quote[0].Close;
+            if (closer is null) {
                 return;
             }
 
             var startTime = DateTime.Now;
-            var points = ci.CloseList
-                .Select((p, i) => new Point(i, p))
+            var points = closer
+                .Select((p, i) => new { Value = p, Index = i })
+                .Where(x => x.Value.HasValue) // keep only non-null values
+                .Select(x => new Point(x.Index, x.Value!.Value))
                 .ToList();
             var endTime = DateTime.Now;
             Debug.WriteLine(
