@@ -26,6 +26,8 @@ public partial class StockWidgetWindow : INotifyPropertyChanged {
     private readonly YahooClient _yahoo = new();
     private Button? _activeButton;
     private List<Point> _chartPoints = new();
+
+    private string _currencySymbol = "$";
     private bool _isFetching;
     private double _prevPrice;
     private double _price;
@@ -97,8 +99,17 @@ public partial class StockWidgetWindow : INotifyPropertyChanged {
         get {
             var change = Price - PrevPrice;
             var pct = PrevPrice != 0 ? change / PrevPrice * 100 : 0;
-            var sign = change >= 0 ? "+" : "";
-            return $"{sign}{change:F2} ({sign}{pct:F2}%)";
+            var sign = change >= 0 ? "+" : "-";
+            return $"{sign}{CurrencySymbol}{Math.Abs(change):F2} ({sign}{Math.Abs(pct):F2}%)";
+        }
+    }
+
+    public string CurrencySymbol {
+        get => _currencySymbol;
+        set {
+            _currencySymbol = value;
+            OnChanged(nameof(CurrencySymbol));
+            OnChanged(nameof(ChangeDisplay)); // refresh formatted change
         }
     }
 
@@ -119,6 +130,79 @@ public partial class StockWidgetWindow : INotifyPropertyChanged {
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;
+
+    private static string GetCurrencySymbol(string? code) {
+        return code?.ToUpper() switch {
+            // North America
+            "USD" => "$",
+            "CAD" => "CA$",
+            "MXN" => "MX$",
+
+            // Europe
+            "EUR" => "€",
+            "GBP" => "£",
+            "CHF" => "CHF",
+            "NOK" => "kr",
+            "SEK" => "kr",
+            "DKK" => "kr",
+            "PLN" => "zł",
+            "CZK" => "Kč",
+            "HUF" => "Ft",
+            "RON" => "lei",
+
+            // Asia
+            "JPY" => "¥",
+            "CNY" => "¥",
+            "HKD" => "HK$",
+            "TWD" => "NT$",
+            "KRW" => "₩",
+            "SGD" => "S$",
+            "THB" => "฿",
+            "INR" => "₹",
+            "IDR" => "Rp",
+            "MYR" => "RM",
+            "PHP" => "₱",
+            "VND" => "₫",
+
+            // Oceania
+            "AUD" => "A$",
+            "NZD" => "NZ$",
+            "FJD" => "FJ$",
+
+            // Middle East / Africa
+            "ILS" => "₪",
+            "AED" => "د.إ",
+            "SAR" => "﷼",
+            "TRY" => "₺",
+            "EGP" => "E£",
+            "ZAR" => "R",
+            "NGN" => "₦",
+            "KES" => "KSh",
+
+            // South America
+            "BRL" => "R$",
+            "ARS" => "$",
+            "CLP" => "CLP$",
+            "COP" => "COL$",
+            "PEN" => "S/",
+            "UYU" => "$U",
+            "BOB" => "Bs",
+
+            // Crypto (common tickers)
+            "BTC" => "₿",
+            "ETH" => "Ξ",
+            "USDT" => "₮",
+            "USDC" => "₮",
+            "SOL" => "◎",
+            "BNB" => "🟡",
+            "DOGE" => "Ð",
+            "XRP" => "✕",
+            "ADA" => "₳",
+
+            // Default fallback
+            _ => code + " ¤" // fallback: ISO code + generic currency sign
+        };
+    }
 
     public void ChangeTimeRange(TimeRange range, TimeInterval interval) {
         SelectedTimeRange = range;
@@ -166,9 +250,11 @@ public partial class StockWidgetWindow : INotifyPropertyChanged {
 
     private void ToggleAlwaysOnTop_Click(object sender, RoutedEventArgs e) {
         if (Topmost) {
+            AlwaysOnTopToggle.IsChecked = false;
             Topmost = false;
             SendToBack();
         } else {
+            AlwaysOnTopToggle.IsChecked = true;
             Topmost = true;
         }
     }
@@ -190,6 +276,14 @@ public partial class StockWidgetWindow : INotifyPropertyChanged {
 
         try {
             var chartRoot = await _yahoo.GetChartResults(Symbol, SelectedTimeRange, SelectedTimeInterval);
+            _prevPrice = chartRoot.Chart.Result[0].Indicators?.Quote[0].Open?[0] ?? 0;
+            var meta1 = chartRoot.Chart.Result[0].Meta;
+            var currency = meta1?.Currency;
+
+            if (meta1?.ChartPreviousClose is { } prevClose) {
+                _prevPrice = prevClose;
+            }
+
 
             var closer = chartRoot.Chart.Result[0].Indicators?.Quote[0].Close;
             if (closer is null) {
@@ -211,8 +305,9 @@ public partial class StockWidgetWindow : INotifyPropertyChanged {
 
             await Dispatcher.InvokeAsync(() => {
                 ChartPoints = points;
-                PrevPrice = first;
+                PrevPrice = _prevPrice;
                 Price = last;
+                CurrencySymbol = GetCurrencySymbol(currency);
                 RangeLabel = $"{SelectedTimeRange.ToLocalizedString()} • {SelectedTimeInterval.ToLocalizedString()}";
                 UpdatedDisplay = $"Updated: {DateTime.Now:hh:mm tt}";
             });
@@ -270,9 +365,7 @@ public partial class StockWidgetWindow : INotifyPropertyChanged {
     }
 
     private void PinMenuItem_Click(object sender, RoutedEventArgs e) {
-        if (!Topmost) {
-            SendToBack();
-        }
+        ToggleAlwaysOnTop_Click(sender, e);
     }
 
     private void CloseWidget_Click(object sender, RoutedEventArgs e) {

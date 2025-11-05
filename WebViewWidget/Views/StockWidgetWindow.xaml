@@ -87,11 +87,17 @@
                       VerticalAlignment="Center"
                       Margin="0,0,8,0"
                       FlowDirection="LeftToRight">
-            <TextBlock Text="{Binding Price, StringFormat={}{0:F2}}"
-                       FontSize="26"
+            <TextBlock FontSize="26"
                        FontWeight="Black"
                        Foreground="#F5F7FA"
-                       Margin="0,0,10,0" />
+                       Margin="0,0,10,0">
+              <TextBlock.Text>
+                <MultiBinding StringFormat="{}{0}{1:F2}">
+                  <Binding Path="CurrencySymbol" />
+                  <Binding Path="Price" />
+                </MultiBinding>
+              </TextBlock.Text>
+            </TextBlock>
             <Border Background="#153F2A"
                     CornerRadius="14"
                     Padding="10,4"
